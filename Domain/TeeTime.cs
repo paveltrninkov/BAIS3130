@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace BAIS3130.Technical_Services
+public class Class1
 {
-    public class TeeTime
-    {
-    }
+	public Class1()
+	{
+	}
 }
