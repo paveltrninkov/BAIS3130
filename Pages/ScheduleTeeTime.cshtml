@@ -3,3 +3,32 @@
 @{
     ViewData["Title"] = "Schedule Tee Time";
 }
+
+<form action="/" method="post" name="ScheduleTeeTime">
+    <table>
+        <tr>
+            <td>
+                Desired Date:
+            </td>
+            <td>
+                <input type="date" name="DesiredDate" value="" />
+            </td>
+        </tr>
+        <tr>
+            <td>Desired Time:</td>
+            <td><input type="time" name="DesiredTime" value="" /></td>
+        </tr>
+        <tr>
+            <td>Total number of players:</td>
+            <td><input type="number" name="Group" value="" /></td>
+        </tr>
+        <tr>
+            <td>Number of carts:</td>
+            <td><input type="number" name="Carts" value="" /></td>
+        </tr>
+        <tr>
+            <td><input type="submit" name="Sumbmit" value="Schedule Tee Time" /></td>
+        </tr>
+    </table>
+    @Model.Message
+</form>
