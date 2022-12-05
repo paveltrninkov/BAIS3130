@@ -24,10 +24,21 @@ namespace BAIS3130.Pages
         }
         public void OnPost()
         {
+            TimeSpan upperLimit = new();
+            TimeSpan lowerLimit = new();
             // silver
-            DateTime limit = DesiredDate.AddDays(7);
-            if (){
-
+            if (DateTime.Compare(DesiredDate, DateTime.Now.AddDays(7)) < 0){
+                Message = "Must schedule tee time at least 7 days in advance.";
+            } else
+            {
+                switch (DesiredDate.TimeOfDay)
+                {
+                    default:
+                        upperLimit = TimeSpan.Parse("15:00");
+                        lowerLimit = TimeSpan.Parse("17:30");
+                        if (TimeSpan.Compare(DesiredTime.TimeOfDay, upperLimit) || TimeSpan.Compare())
+                        break;
+                }
             }
             CBGC RequestDirector = new();
             
