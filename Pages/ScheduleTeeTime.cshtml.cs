@@ -24,6 +24,11 @@ namespace BAIS3130.Pages
         }
         public void OnPost()
         {
+            // silver
+            DateTime limit = DesiredDate.AddDays(7);
+            if (){
+
+            }
             CBGC RequestDirector = new();
             
             TeeTime ScheduledTeeTime = new()
