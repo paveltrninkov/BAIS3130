@@ -10,6 +10,7 @@ namespace BAIS3130.Pages
 {
     public class ScheduleTeeTimeModel : PageModel
     {
+        
         public string Message { get; set; }
         [BindProperty]
         public DateTime DesiredDate { get; set; }
@@ -24,6 +25,10 @@ namespace BAIS3130.Pages
         }
         public void OnPost()
         {
+            Member TempMember = new()
+            {
+                Membership = "Silver"
+            };
             TimeSpan upperLimit = new();
             TimeSpan lowerLimit = new();
             // silver
@@ -31,17 +36,95 @@ namespace BAIS3130.Pages
                 Message = "Must schedule tee time at least 7 days in advance.";
             } else
             {
-                switch (DesiredDate.TimeOfDay)
-                {
-                    default:
-                        upperLimit = TimeSpan.Parse("15:00");
-                        lowerLimit = TimeSpan.Parse("17:30");
-                        if (TimeSpan.Compare(DesiredTime.TimeOfDay, upperLimit) || TimeSpan.Compare())
+                switch (TempMember.Membership) {
+                    case "Silver":
+                        switch (DesiredDate.DayOfWeek.ToString())
+                        {
+                            default:
+                                upperLimit = TimeSpan.Parse("15:00");
+                                lowerLimit = TimeSpan.Parse("17:30");
+                                if (TimeSpan.Compare(DesiredTime.TimeOfDay, upperLimit) < 0 || TimeSpan.Compare(DesiredTime.TimeOfDay, lowerLimit) > 0)
+                                {
+                                    SubmitPost();
+                                }
+                                else
+                                {
+                                    Message = "Fail";
+                                }
+                                break;
+                            case "Saturday":
+                                lowerLimit = TimeSpan.Parse("11:00");
+                                if (TimeSpan.Compare(DesiredDate.TimeOfDay, lowerLimit) > 0)
+                                {
+                                    SubmitPost();
+                                }
+                                else
+                                {
+                                    Message = "Fail";
+                                }
+                                break;
+                            case "Sunday":
+                                lowerLimit = TimeSpan.Parse("11:00");
+                                if (TimeSpan.Compare(DesiredDate.TimeOfDay, lowerLimit) > 0)
+                                {
+                                    SubmitPost();
+                                }
+                                else
+                                {
+                                    Message = "Fail";
+                                }
+                                break;
+                        }
+                        break;
+                    case "Bronze":
+                        switch (DesiredDate.DayOfWeek.ToString())
+                        {
+                            default:
+                                upperLimit = TimeSpan.Parse("15:00");
+                                lowerLimit = TimeSpan.Parse("18:00");
+                                if (TimeSpan.Compare(DesiredTime.TimeOfDay, upperLimit) < 0 || TimeSpan.Compare(DesiredTime.TimeOfDay, lowerLimit) > 0)
+                                {
+                                    SubmitPost();
+                                }
+                                else
+                                {
+                                    Message = "Fail";
+                                }
+                                break;
+                            case "Saturday":
+                                lowerLimit = TimeSpan.Parse("13:00");
+                                if (TimeSpan.Compare(DesiredDate.TimeOfDay, lowerLimit) > 0)
+                                {
+                                    SubmitPost();
+                                }
+                                else
+                                {
+                                    Message = "Fail";
+                                }
+                                break;
+                            case "Sunday":
+                                lowerLimit = TimeSpan.Parse("13:00");
+                                if (TimeSpan.Compare(DesiredDate.TimeOfDay, lowerLimit) > 0)
+                                {
+                                    SubmitPost();
+                                }
+                                else
+                                {
+                                    Message = "Fail";
+                                }
+                                break;
+                        }
+                        break;
+                    case "Gold":
+                        SubmitPost();
                         break;
                 }
             }
+        }
+        private void SubmitPost()
+        {
             CBGC RequestDirector = new();
-            
+
             TeeTime ScheduledTeeTime = new()
             {
                 DesiredTime = DesiredDate,
@@ -52,7 +135,7 @@ namespace BAIS3130.Pages
                 EmployeeName = "Walter Orange"
             };
 
-            if (RequestDirector.BookTeeTime(ScheduledTeeTime))
+            if (RequestDirector.BookTeeTime(ScheduledTeeTime, 1))
             {
                 Message = "Scheduled Successfully";
             }
@@ -60,7 +143,6 @@ namespace BAIS3130.Pages
             {
                 Message = "Something went wrong.";
             }
-
         }
     }
 }

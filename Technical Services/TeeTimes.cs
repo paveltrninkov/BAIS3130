@@ -10,7 +10,7 @@ namespace BAIS3130.Technical_Services
 {
     public class TeeTimes
     {
-        public bool ScheduleTeeTime (TeeTime teeTime)
+        public bool ScheduleTeeTime (TeeTime teeTime, int memberNumber)
         {
             bool confimration = false;
             SqlConnection DataSource = new();
@@ -30,6 +30,15 @@ namespace BAIS3130.Technical_Services
                 SqlDbType = SqlDbType.Date,
                 Direction = ParameterDirection.Input,
                 Value = teeTime.DesiredDate.Date
+            };
+            ScheduleTeeTime.Parameters.Add(parameter);
+
+            parameter = new()
+            {
+                ParameterName = "MemberNumber",
+                SqlDbType = SqlDbType.Int,
+                Direction = ParameterDirection.Input,
+                Value = memberNumber
             };
             ScheduleTeeTime.Parameters.Add(parameter);
 
