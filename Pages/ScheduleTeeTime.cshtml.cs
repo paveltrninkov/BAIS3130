@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using BAIS3130.Domain;
+using Microsoft.AspNetCore.Http;
 
 namespace BAIS3130.Pages
 {
@@ -27,7 +28,7 @@ namespace BAIS3130.Pages
         {
             Member TempMember = new()
             {
-                Membership = "Silver"
+                Membership = HttpContext.Session.GetString("Membership")
             };
             TimeSpan upperLimit = new();
             TimeSpan lowerLimit = new();

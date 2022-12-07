@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 
 namespace BAIS3130.Pages
 {
@@ -19,7 +20,10 @@ namespace BAIS3130.Pages
 
         public void OnGet()
         {
-
+            if (HttpContext.Session.GetInt32("LoggedIn") == null)
+            {
+                Response.Redirect("Login");
+            }
         }
     }
 }

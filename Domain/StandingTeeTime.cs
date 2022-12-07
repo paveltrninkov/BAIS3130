@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace BAIS3130.Domain
 {
-    public class StandignTeeTime
+    public class StandingTeeTime
     {
         public DateTime RequestedTime { get; set; }
         public DateTime StartDate { get; set; }

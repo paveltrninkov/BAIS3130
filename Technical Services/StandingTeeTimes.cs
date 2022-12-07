@@ -10,7 +10,7 @@ namespace BAIS3130.Technical_Services
 {
     public class StandingTeeTimes
     {
-        public bool ScheduleStandingTeeTime(Group group, StandignTeeTime standingTeeTime)
+        public bool ScheduleStandingTeeTime(Group group, StandingTeeTime standingTeeTime)
         {
             bool Confirmation = false;
             SqlConnection DataSource = new();
@@ -65,7 +65,7 @@ namespace BAIS3130.Technical_Services
                 ParameterName = "RequestedStartDate",
                 SqlDbType = SqlDbType.Date,
                 Direction = ParameterDirection.Input,
-                Value = standingTeeTime.StartDate
+                Value = standingTeeTime.StartDate.Date
             };
             ScheduleStandingTeeTime.Parameters.Add(parameter);
 
@@ -74,7 +74,7 @@ namespace BAIS3130.Technical_Services
                 ParameterName = "RequestedEndDate",
                 SqlDbType = SqlDbType.Date,
                 Direction = ParameterDirection.Input,
-                Value = standingTeeTime.EndDate
+                Value = standingTeeTime.EndDate.Date
             };
             ScheduleStandingTeeTime.Parameters.Add(parameter);
 
@@ -90,9 +90,9 @@ namespace BAIS3130.Technical_Services
             parameter = new()
             {
                 ParameterName = "ApprovedTeeTime",
-                SqlDbType = SqlDbType.Date,
+                SqlDbType = SqlDbType.Time,
                 Direction = ParameterDirection.Input,
-                Value = standingTeeTime.ApprovedDate
+                Value = standingTeeTime.ApprovedDate.TimeOfDay
             };
             ScheduleStandingTeeTime.Parameters.Add(parameter);
 
@@ -110,7 +110,7 @@ namespace BAIS3130.Technical_Services
                 ParameterName = "ApprovedDate",
                 SqlDbType = SqlDbType.Date,
                 Direction = ParameterDirection.Input,
-                Value = standingTeeTime.ApprovedDate
+                Value = standingTeeTime.ApprovedDate.Date
             };
             ScheduleStandingTeeTime.Parameters.Add(parameter);
 

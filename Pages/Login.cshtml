@@ -1,0 +1,31 @@
+﻿@page
+@model BAIS3130.Pages.LoginModel
+@{
+}
+
+<form name="Login" method="post">
+    <table>
+        <tr>
+            <td>
+                Username:
+            </td>
+            <td>
+                <input type="text" name="User" value="" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Password:
+            </td>
+            <td>
+                <input type="password" name="Pass" value="" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="submit" name="Submit" value="Submit" />
+            </td>
+        </tr>
+    </table>
+    @Model.Message
+</form>
