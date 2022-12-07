@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using BAIS3130.Domain;
+using Microsoft.AspNetCore.Http;
 
 namespace BAIS3130.Pages
 {
@@ -26,6 +27,10 @@ namespace BAIS3130.Pages
         public string Message { get; set; }
         public void OnGet()
         {
+            if (HttpContext.Session.GetInt32("LoggedIn") == null || HttpContext.Session.GetString("Membership") != "Gold")
+            {
+                Response.Redirect("Login");
+            }
         }
         public void OnPost()
         {

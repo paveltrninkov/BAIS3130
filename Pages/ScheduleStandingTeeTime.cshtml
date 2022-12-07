@@ -10,7 +10,8 @@
                 Member Number:
             </td>
             <td>
-                <input type="number" name="MemberOne" value="" />
+                <input type="number" asp-for="MemberOne" value="" />
+                <span asp-validation-for="MemberOne"></span>
             </td>
         </tr>
         <tr>
@@ -18,7 +19,8 @@
                 Member Number:
             </td>
             <td>
-                <input type="number" name="MemberTwo" value="" />
+                <input type="number" asp-for="MemberTwo" value="" />
+                <span asp-validation-for="MemberTwo"></span>
             </td>
         </tr>
         <tr>
@@ -26,7 +28,8 @@
                 Member Number:
             </td>
             <td>
-                <input type="number" name="MemberThree" value="" />
+                <input type="number" asp-for="MemberThree" value="" />
+                <span asp-validation-for="MemberThree"></span>
             </td>
         </tr>
         <tr>
@@ -34,7 +37,8 @@
                 Start Date:
             </td>
             <td>
-                <input type="date" name="StartDate" value="" />
+                <input type="date" asp-for="StartDate" value="" />
+                <span asp-validation-for="StartDate"></span>
             </td>
         </tr>
         <tr>
@@ -42,7 +46,8 @@
                 Requested Tee Time:
             </td>
             <td>
-                <input type="time" name="RequestedTime" value="" />
+                <input type="time" asp-for="RequestedTime" value="" />
+                <span asp-validation-for="RequestedTime"></span>
             </td>
         </tr>
         <tr>
@@ -50,7 +55,8 @@
                 End Date
             </td>
             <td>
-                <input type="date" name="EndDate" value="" />
+                <input type="date" asp-for="EndDate" value="" />
+                <span asp-validation-for="EndDate"></span>
             </td>
         </tr>
         <tr>

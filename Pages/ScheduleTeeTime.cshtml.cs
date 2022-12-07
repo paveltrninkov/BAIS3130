@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using BAIS3130.Domain;
 using Microsoft.AspNetCore.Http;
+using System.ComponentModel.DataAnnotations;
 
 namespace BAIS3130.Pages
 {
@@ -23,6 +24,10 @@ namespace BAIS3130.Pages
         public int Carts { get; set; }
         public void OnGet()
         {
+            if (HttpContext.Session.GetInt32("LoggedIn") == null)
+            {
+                Response.Redirect("Login");
+            }
         }
         public void OnPost()
         {

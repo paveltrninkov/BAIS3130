@@ -17,7 +17,7 @@ namespace BAIS3130.Pages
         public string Pass { get; set; }
         public void OnGet()
         {
-
+            HttpContext.Session.Clear();
         }
         public void OnPost()
         {

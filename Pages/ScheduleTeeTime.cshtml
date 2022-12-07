@@ -11,23 +11,35 @@
                 Desired Date:
             </td>
             <td>
-                <input type="date" name="DesiredDate" value="" />
+                <input type="date" asp-for="DesiredDate" value="" />
+                <span asp-validation-for="DesiredDate"></span>
             </td>
         </tr>
         <tr>
             <td>Desired Time:</td>
-            <td><input type="time" name="DesiredTime" value="" /></td>
+            <td>
+                <input type="time" asp-for="DesiredTime" value="" />
+                <span asp-validation-for="DesiredTime"></span>
+            </td>
         </tr>
         <tr>
             <td>Total number of players:</td>
-            <td><input type="number" name="Group" value="" /></td>
+            <td>
+                <input type="number" asp-for="Group" value="" max="4" />
+                <span asp-validation-for="Group"></span>
+            </td>
         </tr>
         <tr>
             <td>Number of carts:</td>
-            <td><input type="number" name="Carts" value="" /></td>
+            <td>
+                <input type="number" asp-for="Carts" value="" max="4"/>
+                <span asp-validation-for="Carts"></span>
+            </td>
         </tr>
         <tr>
-            <td><input type="submit" name="Sumbmit" value="Schedule Tee Time" /></td>
+            <td>
+                <input type="submit" name="Sumbmit" value="Schedule Tee Time" />
+            </td>
         </tr>
     </table>
     @Model.Message
