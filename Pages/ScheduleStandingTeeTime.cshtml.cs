@@ -61,7 +61,7 @@ namespace BAIS3130.Pages
             }
             else
             {
-                Message = "Fail";
+                Message = "Scheduling Unsuccessful";
             }
 
         }

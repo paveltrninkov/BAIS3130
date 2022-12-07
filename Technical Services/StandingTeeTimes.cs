@@ -144,6 +144,7 @@ namespace BAIS3130.Technical_Services
             ScheduleStandingTeeTime.ExecuteNonQuery();
 
             DataSource.Close();
+            Confirmation = true;
             return Confirmation;
         }
     }

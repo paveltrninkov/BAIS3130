@@ -37,17 +37,17 @@ namespace BAIS3130.Pages
             };
             TimeSpan upperLimit = new();
             TimeSpan lowerLimit = new();
-            // silver
-            if (DateTime.Compare(DesiredDate, DateTime.Now.AddDays(7)) < 0){
+            
+            if (DateTime.Compare(DesiredDate, DateTime.Now.AddDays(7)) < 0){ // 7 days in advance
                 Message = "Must schedule tee time at least 7 days in advance.";
             } else
             {
                 switch (TempMember.Membership) {
-                    case "Silver":
+                    case "Silver": // silver check
                         switch (DesiredDate.DayOfWeek.ToString())
                         {
-                            default:
-                                upperLimit = TimeSpan.Parse("15:00");
+                            default: // weekday
+                                upperLimit = TimeSpan.Parse("15:00"); 
                                 lowerLimit = TimeSpan.Parse("17:30");
                                 if (TimeSpan.Compare(DesiredTime.TimeOfDay, upperLimit) < 0 || TimeSpan.Compare(DesiredTime.TimeOfDay, lowerLimit) > 0)
                                 {
@@ -58,7 +58,7 @@ namespace BAIS3130.Pages
                                     Message = "Scheduling Unsuccessful";
                                 }
                                 break;
-                            case "Saturday":
+                            case "Saturday": // satuday
                                 lowerLimit = TimeSpan.Parse("11:00");
                                 if (TimeSpan.Compare(DesiredDate.TimeOfDay, lowerLimit) > 0)
                                 {
@@ -69,7 +69,7 @@ namespace BAIS3130.Pages
                                     Message = "Scheduling Unsuccessful";
                                 }
                                 break;
-                            case "Sunday":
+                            case "Sunday": // sunday
                                 lowerLimit = TimeSpan.Parse("11:00");
                                 if (TimeSpan.Compare(DesiredDate.TimeOfDay, lowerLimit) > 0)
                                 {
@@ -82,7 +82,7 @@ namespace BAIS3130.Pages
                                 break;
                         }
                         break;
-                    case "Bronze":
+                    case "Bronze": // bronze check
                         switch (DesiredDate.DayOfWeek.ToString())
                         {
                             default:
@@ -121,13 +121,13 @@ namespace BAIS3130.Pages
                                 break;
                         }
                         break;
-                    case "Gold":
+                    case "Gold": // gold
                         SubmitPost();
                         break;
                 }
             }
         }
-        private void SubmitPost()
+        private void SubmitPost() // submit post function/method
         {
             CBGC RequestDirector = new();
 
