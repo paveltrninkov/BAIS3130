@@ -55,7 +55,7 @@ namespace BAIS3130.Pages
                                 }
                                 else
                                 {
-                                    Message = "Fail";
+                                    Message = "Scheduling Unsuccessful";
                                 }
                                 break;
                             case "Saturday":
@@ -66,7 +66,7 @@ namespace BAIS3130.Pages
                                 }
                                 else
                                 {
-                                    Message = "Fail";
+                                    Message = "Scheduling Unsuccessful";
                                 }
                                 break;
                             case "Sunday":
@@ -77,7 +77,7 @@ namespace BAIS3130.Pages
                                 }
                                 else
                                 {
-                                    Message = "Fail";
+                                    Message = "Scheduling Unsuccessful";
                                 }
                                 break;
                         }
@@ -94,7 +94,7 @@ namespace BAIS3130.Pages
                                 }
                                 else
                                 {
-                                    Message = "Fail";
+                                    Message = "Scheduling Unsuccessful";
                                 }
                                 break;
                             case "Saturday":
@@ -105,7 +105,7 @@ namespace BAIS3130.Pages
                                 }
                                 else
                                 {
-                                    Message = "Fail";
+                                    Message = "Scheduling Unsuccessful";
                                 }
                                 break;
                             case "Sunday":
@@ -116,7 +116,7 @@ namespace BAIS3130.Pages
                                 }
                                 else
                                 {
-                                    Message = "Fail";
+                                    Message = "Scheduling Unsuccessful";
                                 }
                                 break;
                         }
@@ -147,7 +147,7 @@ namespace BAIS3130.Pages
             }
             else
             {
-                Message = "Something went wrong.";
+                Message = "Scheduling Unsuccessful";
             }
         }
     }
