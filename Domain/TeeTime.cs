@@ -7,7 +7,7 @@ namespace BAIS3130.Domain
 {
     public class TeeTime
     {
-        public DateTime DesiredTime { get; set; }
+        public TimeSpan DesiredTime { get; set; }
         public DateTime DesiredDate { get; set; }
         public int MemberNumber { get; set; }
         public int NumberOfPlayers { get; set; }

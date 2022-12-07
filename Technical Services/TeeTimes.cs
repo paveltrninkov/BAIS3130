@@ -56,7 +56,7 @@ namespace BAIS3130.Technical_Services
                 ParameterName = "Time",
                 SqlDbType = SqlDbType.Time,
                 Direction = ParameterDirection.Input,
-                Value = teeTime.DesiredTime.TimeOfDay
+                Value = teeTime.DesiredTime
             };
             ScheduleTeeTime.Parameters.Add(parameter);
 

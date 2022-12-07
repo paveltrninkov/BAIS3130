@@ -133,7 +133,7 @@ namespace BAIS3130.Pages
 
             TeeTime ScheduledTeeTime = new()
             {
-                DesiredTime = DesiredDate,
+                DesiredTime = DesiredTime.TimeOfDay,
                 DesiredDate = DesiredDate,
                 NumberOfPlayers = Group,
                 NumberOfCarts = Carts,
