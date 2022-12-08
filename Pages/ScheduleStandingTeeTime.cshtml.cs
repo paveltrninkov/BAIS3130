@@ -54,16 +54,26 @@ namespace BAIS3130.Pages
                 ApprovedDate = DateTime.Now
             };
 
-            CBGC RequestDirector = new();
-
-            if (RequestDirector.RequestStandingTeeTime(party, Request))
+            if (DateTime.Compare(StartDate, EndDate)  < 0)
             {
-                Message = "Successful";
+                CBGC RequestDirector = new();
+
+                if (RequestDirector.RequestStandingTeeTime(party, Request))
+                {
+                    Message = "Successful";
+                }
+                else
+                {
+                    Message = "Scheduling Unsuccessful";
+                }
             }
             else
             {
-                Message = "Scheduling Unsuccessful";
+                Message = "End date must be before Start date";
             }
+
+
+            
 
         }
     }

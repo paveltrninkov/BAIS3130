@@ -19,7 +19,11 @@ namespace BAIS3130.Pages
         [BindProperty]
         public DateTime DesiredTime { get; set; }
         [BindProperty]
-        public int Group { get; set; }
+        public int MemberOne { get; set; }
+        [BindProperty]
+        public int MemberTwo { get; set; }
+        [BindProperty]
+        public int MemberThree { get; set; }
         [BindProperty]
         public int Carts { get; set; }
         public void OnGet()
@@ -135,8 +139,10 @@ namespace BAIS3130.Pages
             {
                 DesiredTime = DesiredTime.TimeOfDay,
                 DesiredDate = DesiredDate,
-                NumberOfPlayers = Group,
+                MemberOne = MemberOne,
+                MemberTwo = MemberTwo,
                 NumberOfCarts = Carts,
+                MemberThree = MemberThree,
                 RequestedTime = DateTime.Now,
                 EmployeeName = "Walter Orange"
             };

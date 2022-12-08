@@ -14,7 +14,7 @@ namespace BAIS3130.Technical_Services
         {
             bool confimration = false;
             SqlConnection DataSource = new();
-            DataSource.ConnectionString = @"Persist Security Info=False;User=ptrninkov1;Password=makedonija1A;server=dev1.baist.ca";
+            DataSource.ConnectionString = @"Persist Security Info=False;User=ptrninkov1;Password=makedonija1A!;server=dev1.baist.ca";
             DataSource.Open();
 
             SqlCommand ScheduleTeeTime = new()
@@ -62,19 +62,37 @@ namespace BAIS3130.Technical_Services
 
             parameter = new()
             {
-                ParameterName = "NumberOfPlayers",
+                ParameterName = "NumberOfCarts",
                 SqlDbType = SqlDbType.Int,
                 Direction = ParameterDirection.Input,
-                Value = teeTime.NumberOfPlayers
+                Value = teeTime.NumberOfCarts
             };
             ScheduleTeeTime.Parameters.Add(parameter);
 
             parameter = new()
             {
-                ParameterName = "NumberOfCarts",
+                ParameterName = "TeamMemberOne",
                 SqlDbType = SqlDbType.Int,
                 Direction = ParameterDirection.Input,
-                Value = teeTime.NumberOfCarts
+                Value = teeTime.MemberOne
+            };
+            ScheduleTeeTime.Parameters.Add(parameter);
+
+            parameter = new()
+            {
+                ParameterName = "TeamMemberTwo",
+                SqlDbType = SqlDbType.Int,
+                Direction = ParameterDirection.Input,
+                Value = teeTime.MemberTwo
+            };
+            ScheduleTeeTime.Parameters.Add(parameter);
+
+            parameter = new()
+            {
+                ParameterName = "TeamMemberThree",
+                SqlDbType = SqlDbType.Int,
+                Direction = ParameterDirection.Input,
+                Value = teeTime.MemberThree
             };
             ScheduleTeeTime.Parameters.Add(parameter);
 
