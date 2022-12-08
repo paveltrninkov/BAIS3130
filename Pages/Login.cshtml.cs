@@ -25,18 +25,21 @@ namespace BAIS3130.Pages
             {
                 HttpContext.Session.SetString("Membership", "Gold");
                 HttpContext.Session.SetInt32("LoggedIn", 1);
+                HttpContext.Session.SetInt32("Number", 1);
                 Response.Redirect("Index");
             }
             else if (User == "Silver" && Pass == "Test")
             {
                 HttpContext.Session.SetString("Membership", "Silver");
                 HttpContext.Session.SetInt32("LoggedIn", 1);
+                HttpContext.Session.SetInt32("Number", 2);
                 Response.Redirect("Index");
             }
             else if (User == "Bronze" && Pass == "Test")
             {
                 HttpContext.Session.SetString("Membershp", "Bronze");
                 HttpContext.Session.SetInt32("LoggedIn", 1);
+                HttpContext.Session.SetInt32("Number", 3);
                 Response.Redirect("Index");
             }
             else

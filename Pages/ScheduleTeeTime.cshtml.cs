@@ -42,7 +42,7 @@ namespace BAIS3130.Pages
             TimeSpan upperLimit = new();
             TimeSpan lowerLimit = new();
             
-            if (DateTime.Compare(DesiredDate, DateTime.Now.AddDays(7)) < 0){ // 7 days in advance
+            if (DateTime.Compare(DesiredDate, DateTime.Now.AddDays(6)) < 0){ // 7 days in advance
                 Message = "Must schedule tee time at least 7 days in advance.";
             } else
             {
@@ -147,7 +147,7 @@ namespace BAIS3130.Pages
                 EmployeeName = "Walter Orange"
             };
 
-            if (RequestDirector.BookTeeTime(ScheduledTeeTime, 1))
+            if (RequestDirector.BookTeeTime(ScheduledTeeTime, (int)HttpContext.Session.GetInt32("Number")))
             {
                 Message = "Scheduled Successfully";
             }
