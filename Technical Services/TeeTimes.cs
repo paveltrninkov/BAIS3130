@@ -62,10 +62,28 @@ namespace BAIS3130.Technical_Services
 
             parameter = new()
             {
-                ParameterName = "NumberOfPlayers",
+                ParameterName = "MemberOne",
                 SqlDbType = SqlDbType.Int,
                 Direction = ParameterDirection.Input,
-                Value = teeTime.NumberOfPlayers
+                Value = teeTime.MemberOne
+            };
+            ScheduleTeeTime.Parameters.Add(parameter);
+
+            parameter = new()
+            {
+                ParameterName = "MemberTwo",
+                SqlDbType = SqlDbType.Int,
+                Direction = ParameterDirection.Input,
+                Value = teeTime.MemberTwo
+            };
+            ScheduleTeeTime.Parameters.Add(parameter);
+
+            parameter = new()
+            {
+                ParameterName = "MemberThree",
+                SqlDbType = SqlDbType.Int,
+                Direction = ParameterDirection.Input,
+                Value = teeTime.MemberThree
             };
             ScheduleTeeTime.Parameters.Add(parameter);
 
