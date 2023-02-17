@@ -14,7 +14,7 @@ namespace BAIS3130.Technical_Services
         {
             bool Confirmation = false;
             SqlConnection DataSource = new();
-            DataSource.ConnectionString = @"Persist Security Info=False;User=ptrninkov1;Password=makedonija1A;server=dev1.baist.ca";
+            DataSource.ConnectionString = @"Persist Security Info=False;User=ptrninkov1;Password=makedonija1A!;server=dev1.baist.ca";
             DataSource.Open();
 
             SqlCommand ScheduleStandingTeeTime = new()
@@ -144,6 +144,7 @@ namespace BAIS3130.Technical_Services
             ScheduleStandingTeeTime.ExecuteNonQuery();
 
             DataSource.Close();
+            Confirmation = true;
             return Confirmation;
         }
         // GetStandingTeeTimeForMember

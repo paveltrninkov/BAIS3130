@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using BAIS3130.Domain;
 using Microsoft.AspNetCore.Http;
+using System.ComponentModel.DataAnnotations;
 
 namespace BAIS3130.Pages
 {
@@ -48,17 +49,26 @@ namespace BAIS3130.Pages
                 PriorityNumber = 1,
                 DayOfWeek = StartDate.DayOfWeek.ToString()
             };
-
-            CBGC RequestDirector = new();
-
-            if (RequestDirector.RequestStandingTeeTime(Request))
+            if (DateTime.Compare(StartDate, EndDate)  < 0)
             {
-                Message = "Successful";
+                CBGC RequestDirector = new();
+
+                if (RequestDirector.RequestStandingTeeTime(party, Request))
+                {
+                    Message = "Successful";
+                }
+                else
+                {
+                    Message = "Scheduling Unsuccessful";
+                }
             }
             else
             {
-                Message = "Fail";
+                Message = "End date must be before Start date";
             }
+
+
+            
 
         }
     }
