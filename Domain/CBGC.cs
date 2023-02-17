@@ -15,10 +15,10 @@ namespace BAIS3130.Domain
             return confirmation;
         }
 
-        public bool RequestStandingTeeTime (Group group, StandingTeeTime standingTeeTime)
+        public bool RequestStandingTeeTime (StandingTeeTime standingTeeTime)
         {
             StandingTeeTimes RequestDirector = new();
-            bool confirmation = RequestDirector.ScheduleStandingTeeTime(group, standingTeeTime);
+            bool confirmation = RequestDirector.ScheduleStandingTeeTime(standingTeeTime);
             return confirmation;
         }
     }

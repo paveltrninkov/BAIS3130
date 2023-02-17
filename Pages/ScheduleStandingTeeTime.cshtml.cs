@@ -34,28 +34,24 @@ namespace BAIS3130.Pages
         }
         public void OnPost()
         {
-            Group party = new()
-            {
-                ShareholderName = "Bob Bob",
-                ShareholderNumber = 1,
-                MemberOne = MemberOne,
-                MemberTwo = MemberTwo,
-                MemberThree = MemberThree
-            };
 
             StandingTeeTime Request = new()
             {
-                RequestedTime = RequestedTime,
-                StartDate = StartDate,
-                EndDate = EndDate,
+                ShareholderMemberName = "Bob Bob",
+                ShareholderMemberNumber = 1,
+                GroupMemberOne = MemberOne,
+                GroupMemberTwo = MemberTwo,
+                GroupMemberThree = MemberThree,
+                RequestedTime = RequestedTime.TimeOfDay.ToString(),
+                StartDate = StartDate.Date.ToString(),
+                EndDate = EndDate.Date.ToString(),
                 PriorityNumber = 1,
-                ApprovedBy = "Henry Roberts",
-                ApprovedDate = DateTime.Now
+                DayOfWeek = StartDate.DayOfWeek.ToString()
             };
 
             CBGC RequestDirector = new();
 
-            if (RequestDirector.RequestStandingTeeTime(party, Request))
+            if (RequestDirector.RequestStandingTeeTime(Request))
             {
                 Message = "Successful";
             }

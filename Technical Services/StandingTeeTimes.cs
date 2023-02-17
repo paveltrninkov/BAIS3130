@@ -10,7 +10,7 @@ namespace BAIS3130.Technical_Services
 {
     public class StandingTeeTimes
     {
-        public bool ScheduleStandingTeeTime(Group group, StandingTeeTime standingTeeTime)
+        public bool ScheduleStandingTeeTime(StandingTeeTime standingTeeTime)
         {
             bool Confirmation = false;
             SqlConnection DataSource = new();
@@ -29,7 +29,7 @@ namespace BAIS3130.Technical_Services
                 ParameterName = "ShareholderMemberNumber",
                 SqlDbType = SqlDbType.Int,
                 Direction = ParameterDirection.Input,
-                Value = group.ShareholderNumber
+                Value = standingTeeTime.ShareholderMemberNumber
             };
             ScheduleStandingTeeTime.Parameters.Add(parameter);
 
@@ -38,7 +38,7 @@ namespace BAIS3130.Technical_Services
                 ParameterName = "ShareholderMemberName",
                 SqlDbType = SqlDbType.VarChar,
                 Direction = ParameterDirection.Input,
-                Value = group.ShareholderName
+                Value = standingTeeTime.ShareholderMemberName
             };
             ScheduleStandingTeeTime.Parameters.Add(parameter);
 
@@ -47,7 +47,7 @@ namespace BAIS3130.Technical_Services
                 ParameterName = "RequestedDayOfWeek",
                 SqlDbType = SqlDbType.VarChar,
                 Direction = ParameterDirection.Input,
-                Value = standingTeeTime.StartDate.DayOfWeek
+                Value = standingTeeTime.DayOfWeek
             };
             ScheduleStandingTeeTime.Parameters.Add(parameter);
 
@@ -56,7 +56,7 @@ namespace BAIS3130.Technical_Services
                 ParameterName = "RequestedTeeTime",
                 SqlDbType = SqlDbType.Time,
                 Direction = ParameterDirection.Input,
-                Value = standingTeeTime.RequestedTime.TimeOfDay
+                Value = standingTeeTime.RequestedTime
             };
             ScheduleStandingTeeTime.Parameters.Add(parameter);
 
@@ -65,7 +65,7 @@ namespace BAIS3130.Technical_Services
                 ParameterName = "RequestedStartDate",
                 SqlDbType = SqlDbType.Date,
                 Direction = ParameterDirection.Input,
-                Value = standingTeeTime.StartDate.Date
+                Value = standingTeeTime.StartDate
             };
             ScheduleStandingTeeTime.Parameters.Add(parameter);
 
@@ -74,7 +74,7 @@ namespace BAIS3130.Technical_Services
                 ParameterName = "RequestedEndDate",
                 SqlDbType = SqlDbType.Date,
                 Direction = ParameterDirection.Input,
-                Value = standingTeeTime.EndDate.Date
+                Value = standingTeeTime.EndDate
             };
             ScheduleStandingTeeTime.Parameters.Add(parameter);
 
@@ -92,7 +92,7 @@ namespace BAIS3130.Technical_Services
                 ParameterName = "ApprovedTeeTime",
                 SqlDbType = SqlDbType.Time,
                 Direction = ParameterDirection.Input,
-                Value = standingTeeTime.ApprovedDate.TimeOfDay
+                Value = standingTeeTime.ApprovedTeeTime
             };
             ScheduleStandingTeeTime.Parameters.Add(parameter);
 
@@ -110,7 +110,7 @@ namespace BAIS3130.Technical_Services
                 ParameterName = "ApprovedDate",
                 SqlDbType = SqlDbType.Date,
                 Direction = ParameterDirection.Input,
-                Value = standingTeeTime.ApprovedDate.Date
+                Value = standingTeeTime.ApprovedDate
             };
             ScheduleStandingTeeTime.Parameters.Add(parameter);
 
@@ -119,7 +119,7 @@ namespace BAIS3130.Technical_Services
                 ParameterName = "GroupMemberOne",
                 SqlDbType = SqlDbType.Int,
                 Direction = ParameterDirection.Input,
-                Value = group.MemberOne
+                Value = standingTeeTime.GroupMemberOne
             };
             ScheduleStandingTeeTime.Parameters.Add(parameter);
 
@@ -128,7 +128,7 @@ namespace BAIS3130.Technical_Services
                 ParameterName = "GroupMemberTwo",
                 SqlDbType = SqlDbType.Int,
                 Direction = ParameterDirection.Input,
-                Value = group.MemberTwo
+                Value = standingTeeTime.GroupMemberTwo
             };
             ScheduleStandingTeeTime.Parameters.Add(parameter);
 
@@ -137,7 +137,7 @@ namespace BAIS3130.Technical_Services
                 ParameterName = "GroupMemberThree",
                 SqlDbType = SqlDbType.Int,
                 Direction = ParameterDirection.Input,
-                Value = group.MemberThree
+                Value = standingTeeTime.GroupMemberThree
             };
             ScheduleStandingTeeTime.Parameters.Add(parameter);
 
@@ -145,6 +145,59 @@ namespace BAIS3130.Technical_Services
 
             DataSource.Close();
             return Confirmation;
+        }
+        // GetStandingTeeTimeForMember
+        public List<StandingTeeTime> GetStandingTeeTimeForMember(int memberNumber)
+        {
+            List<StandingTeeTime> TeeTimes = new();
+            SqlConnection DataSource = new();
+            DataSource.ConnectionString = @"Persist Security Info=False;User=ptrninkov1;Password=makedonija1A;server=dev1.baist.ca";
+            DataSource.Open();
+
+            SqlCommand GetStandingTeeTimeForMember = new()
+            {
+                Connection = DataSource,
+                CommandType = CommandType.StoredProcedure,
+                CommandText = "GetStandingTeeTimeForMember"
+            };
+
+            SqlParameter parameter = new()
+            {
+                ParameterName = "MemberNumber",
+                SqlDbType = SqlDbType.Int,
+                Direction = ParameterDirection.Input,
+                Value = memberNumber
+            };
+            GetStandingTeeTimeForMember.Parameters.Add(parameter);
+
+            SqlDataReader DataReader = GetStandingTeeTimeForMember.ExecuteReader();
+
+            StandingTeeTime StandingTeeTime = new();
+
+            if (DataReader.HasRows)
+            {
+                while (DataReader.Read())
+                {
+                    StandingTeeTime = new();
+                    StandingTeeTime.ShareholderMemberName = (string)DataReader["ShareholderMemberName"];
+                    StandingTeeTime.ShareholderMemberNumber = (int)DataReader["ShareholderMemberNumber"];
+                    StandingTeeTime.GroupMemberOne = (int)DataReader["GroupMemberOne"];
+                    StandingTeeTime.GroupMemberThree = (int)DataReader["GroupMemberTwo"];
+                    StandingTeeTime.GroupMemberThree = (int)DataReader["GroupMemberThree"];
+                    StandingTeeTime.PriorityNumber = (int)DataReader["PriorityNumber"];
+                    StandingTeeTime.ApprovedBy = (string)DataReader["ApprovedBy"];
+                    StandingTeeTime.EndDate = (string)DataReader["RequestedEndDate"];
+                    StandingTeeTime.StartDate = (string)DataReader["RequestedStartDate"];
+                    StandingTeeTime.DayOfWeek = (string)DataReader["RequestedDayOfWeek"];
+                    StandingTeeTime.ApprovedDate = (string)DataReader["ApprovedDate"];
+                    StandingTeeTime.ApprovedTeeTime = (string)DataReader["ApprovedTeeTime"];
+
+                    TeeTimes.Add(StandingTeeTime);
+                }
+            }
+            DataReader.Close();
+            DataSource.Close();
+            return TeeTimes;
         }
     }
 }
