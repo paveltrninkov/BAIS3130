@@ -7,11 +7,12 @@ namespace BAIS3130.Domain
 {
     public class StandingTeeTime
     {
+        public int StandingTeeTimeNumber { get; set; }
         public int ShareholderMemberNumber { get; set; }
         public string ShareholderMemberName { get; set; }
-        public int GroupMemberOne { get; set; }
-        public int GroupMemberTwo { get; set; }
-        public int GroupMemberThree { get; set; }
+        public string GroupMemberOne { get; set; }
+        public string GroupMemberTwo { get; set; }
+        public string GroupMemberThree { get; set; }
         public string DayOfWeek { get; set; }
         public string RequestedTime { get; set; }
         public string StartDate { get; set; }

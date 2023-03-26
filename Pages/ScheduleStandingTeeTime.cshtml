@@ -3,6 +3,80 @@
 @{
 }
 
+
+<form method="post">
+    <table>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Team Member 1
+            </th>
+            <th>
+                Team Member 2
+            </th>
+            <th>
+                Team Member 3
+            </th>
+            <th>
+                Requested Time
+            </th>
+            <th>
+                Start Date
+            </th>
+            <th>
+                End Date
+            </th>
+            <th>
+                Priority Number
+            </th>
+            <th>
+                Day Of Week
+            </th>
+            <th>
+                Delete
+            </th>
+        </tr>
+        @{int StandingTeeTimePos = 0; }
+        @foreach (var teeTime in Model.StandingTeeTimes)
+        {
+            <tr>
+                <td>
+                    @teeTime.ShareholderMemberName
+                </td>
+                <td>
+                    @teeTime.GroupMemberOne 
+                </td>
+                <td>
+                    @teeTime.GroupMemberTwo
+                </td>
+                <td>
+                    @teeTime.GroupMemberThree
+                </td>
+                <td>
+                    @teeTime.RequestedTime
+                </td>
+                <td>
+                    @teeTime.StartDate
+                </td>
+                <td>
+                    @teeTime.EndDate
+                </td>
+                <td>
+                    @teeTime.PriorityNumber
+                </td>
+                <td>
+                    @teeTime.DayOfWeek
+                </td>
+                <td>
+                    <input type="submit" name="Submit" value="@StandingTeeTimePos"/>
+                </td>
+            </tr>
+        }
+    </table>
+</form>
+
 <form method="post">
     <table>
         <tr>

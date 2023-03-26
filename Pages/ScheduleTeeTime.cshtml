@@ -4,6 +4,87 @@
     ViewData["Title"] = "Schedule Tee Time";
 }
 
+
+<form method="post">
+    <table>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Team Member 1
+            </th>
+            <th>
+                Team Member 2
+            </th>
+            <th>
+                Team Member 3
+            </th>
+            <th>
+                Requested Time
+            </th>
+            <th>
+                Requested Date
+            </th>
+            <th>
+                Desired Time
+            </th>
+            <th>
+                Desired Date
+            </th>
+            <th>
+                Number Of Carts
+            </th>
+            <th>
+                Update
+            </th>
+            <th>
+                Delete
+            </th>
+        </tr>
+        @{int TeeTimePos = 0; }
+        @foreach (var teeTime in Model.TeeTimes)
+        {
+            <tr>
+                <td>
+                    @teeTime.FullName
+                </td>
+                <td>
+                    @teeTime.MemberOne
+                </td>
+                <td>
+                    @teeTime.MemberTwo
+                </td>
+                <td>
+                    @teeTime.MemberThree
+                </td>
+                <td>
+                    @teeTime.RequestedTime
+                </td>
+                <td>
+                    @teeTime.RequestedDate
+                </td>
+                <td>
+                    @teeTime.DesiredTime
+                </td>
+                <td>
+                    @teeTime.DesiredDate
+                </td>
+                <td>
+                    @teeTime.NumberOfCarts
+                </td>
+                <td>
+                    <button>Change</button>
+                </td>
+                <td>
+                    <input type="submit" name="Submit" value="@Model.TeeTimePos" />
+                    @{Model.TeeTimePos++;}
+                </td>
+            </tr>
+        }
+    </table>
+</form>
+
 <form method="post" name="ScheduleTeeTime">
     <table>
         <tr>
@@ -18,7 +99,7 @@
         <tr>
             <td>Desired Time:</td>
             <td>
-                <input type="time" asp-for="DesiredTime" value="12:00"/>
+                <input type="time" asp-for="DesiredTime" value="12:00" />
                 <span asp-validation-for="DesiredTime"></span>
             </td>
         </tr>
@@ -26,7 +107,7 @@
 
             <td>Group Member One:</td>
             <td>
-                <input type="number" name="MemberOne" value=""/>
+                <input type="number" name="MemberOne" value="" />
 
             </td>
         </tr>
@@ -36,7 +117,7 @@
                 Group Member Two:
             </td>
             <td>
-                <input type="number" name="MemberTwo" value="" min="0"/>
+                <input type="number" name="MemberTwo" value="" min="0" />
 
             </td>
         </tr>
@@ -46,14 +127,14 @@
                 Group Member Three:
             </td>
             <td>
-                <input type="number" name="MemberThree" value="" min="0"/>
+                <input type="number" name="MemberThree" value="" min="0" />
 
             </td>
         </tr>
         <tr>
             <td>Number of carts:</td>
             <td>
-                <input type="number" asp-for="Carts" value="" max="4" min="0"/>
+                <input type="number" asp-for="Carts" value="" max="4" min="0" />
                 <span asp-validation-for="Carts"></span>
             </td>
         </tr>

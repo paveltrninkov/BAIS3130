@@ -1,0 +1,19 @@
+﻿@page
+@model BAIS3130.Pages.ViewHandicapModel
+@{
+}
+
+<form method="post">
+    <table>
+        <tr>
+            <td>Member Number</td>
+            <td>
+                <input type="number" name="MemberNumber" value="" />
+            </td>
+        </tr>
+        <tr>
+            <td><input type="submit" name="Submit" value="Submit" /></td>
+        </tr>
+    </table>
+</form>
+<h2>@Model.Handicap</h2>

@@ -12,9 +12,9 @@ namespace BAIS3130.Technical_Services
     {
         public bool ScheduleTeeTime (TeeTime teeTime, int memberNumber)
         {
-            bool confimration = false;
+            bool Confirmation = false;
             SqlConnection DataSource = new();
-            DataSource.ConnectionString = @"Persist Security Info=False;User=ptrninkov1;Password=makedonija1A!;server=dev1.baist.ca";
+            DataSource.ConnectionString = @"Persist Security Info=False;User=ptrninkov1;Password=rageking1A;server=dev1.baist.ca";
             DataSource.Open();
 
             SqlCommand ScheduleTeeTime = new()
@@ -24,108 +24,376 @@ namespace BAIS3130.Technical_Services
                 CommandText = "ScheduleTeeTime"
             };
 
-            SqlParameter parameter = new()
+            // Date Parameter
+            SqlParameter Parameter = new()
             {
                 ParameterName = "Date",
                 SqlDbType = SqlDbType.Date,
                 Direction = ParameterDirection.Input,
                 Value = teeTime.DesiredDate.Date
             };
-            ScheduleTeeTime.Parameters.Add(parameter);
+            ScheduleTeeTime.Parameters.Add(Parameter);
 
-            parameter = new()
+            // Member Number Parameter
+            Parameter = new()
             {
                 ParameterName = "MemberNumber",
                 SqlDbType = SqlDbType.Int,
                 Direction = ParameterDirection.Input,
                 Value = memberNumber
             };
-            ScheduleTeeTime.Parameters.Add(parameter);
+            ScheduleTeeTime.Parameters.Add(Parameter);
 
-            parameter = new()
+            // Day Of Week Parameter
+            Parameter = new()
             {
                 ParameterName = "DayOfWeek",
                 SqlDbType = SqlDbType.VarChar,
                 Direction = ParameterDirection.Input,
                 Value = teeTime.DesiredDate.DayOfWeek
             };
-            ScheduleTeeTime.Parameters.Add(parameter);
+            ScheduleTeeTime.Parameters.Add(Parameter);
 
-            parameter = new()
+            // Time Parameter
+            Parameter = new()
             {
                 ParameterName = "Time",
                 SqlDbType = SqlDbType.Time,
                 Direction = ParameterDirection.Input,
+                Value = teeTime.DesiredTime
             };
-            ScheduleTeeTime.Parameters.Add(parameter);
+            ScheduleTeeTime.Parameters.Add(Parameter);
 
-            parameter = new()
+            // Number Of Carts Parameter
+            Parameter = new()
             {
                 ParameterName = "NumberOfCarts",
                 SqlDbType = SqlDbType.Int,
                 Direction = ParameterDirection.Input,
                 Value = teeTime.NumberOfCarts
             };
-            ScheduleTeeTime.Parameters.Add(parameter);
+            ScheduleTeeTime.Parameters.Add(Parameter);
 
-            parameter = new()
+            // Team Member One Parameter
+            Parameter = new()
             {
-                ParameterName = "TeamMemberOne",
+                ParameterName = "MemberOne",
                 SqlDbType = SqlDbType.Int,
                 Direction = ParameterDirection.Input,
                 Value = teeTime.MemberOne
             };
-            ScheduleTeeTime.Parameters.Add(parameter);
+            ScheduleTeeTime.Parameters.Add(Parameter);
 
-            parameter = new()
+            // Team Member Two Parameter
+            Parameter = new()
             {
-                ParameterName = "TeamMemberTwo",
+                ParameterName = "MemberTwo",
                 SqlDbType = SqlDbType.Int,
                 Direction = ParameterDirection.Input,
                 Value = teeTime.MemberTwo
             };
-            ScheduleTeeTime.Parameters.Add(parameter);
+            ScheduleTeeTime.Parameters.Add(Parameter);
 
-            parameter = new()
+            // Team Member Three Parameter
+            Parameter = new()
             {
-                ParameterName = "TeamMemberThree",
+                ParameterName = "MemberThree",
                 SqlDbType = SqlDbType.Int,
                 Direction = ParameterDirection.Input,
                 Value = teeTime.MemberThree
             };
-            ScheduleTeeTime.Parameters.Add(parameter);
+            ScheduleTeeTime.Parameters.Add(Parameter);
 
-            parameter = new()
+            // Requested Date Parameter
+            Parameter = new()
             {
                 ParameterName = "RequestedDate",
                 SqlDbType = SqlDbType.Date,
                 Direction = ParameterDirection.Input,
-                Value = teeTime.RequestedTime.Date
+                Value = teeTime.RequestedDate
             };
-            ScheduleTeeTime.Parameters.Add(parameter);
+            ScheduleTeeTime.Parameters.Add(Parameter);
+            // Requested Time Parameter
 
-            parameter = new()
+            Parameter = new()
             {
                 ParameterName = "RequestedTime",
                 SqlDbType = SqlDbType.Time,
                 Direction = ParameterDirection.Input,
-                Value = teeTime.RequestedTime.TimeOfDay
+                Value = teeTime.RequestedTime
             };
-            ScheduleTeeTime.Parameters.Add(parameter);
+            ScheduleTeeTime.Parameters.Add(Parameter);
 
-            parameter = new()
+            // Employee Name Parameter (Hard Coded)
+            Parameter = new()
             {
                 ParameterName = "EmployeeName",
                 SqlDbType = SqlDbType.VarChar,
                 Direction = ParameterDirection.Input,
                 Value = teeTime.EmployeeName
             };
-            ScheduleTeeTime.Parameters.Add(parameter);
+            ScheduleTeeTime.Parameters.Add(Parameter);
 
-            ScheduleTeeTime.ExecuteNonQuery();
+            Confirmation = (int)ScheduleTeeTime.ExecuteNonQuery() != 1;
             DataSource.Close();
-            confimration = true;
-            return confimration;
+            return Confirmation;
+        }
+        // GetTeeTimes
+
+        public List<TeeTime> GetTeeTimesForMembers(int memberNumber)
+        {
+            List<TeeTime> MemberTeeTimes = new List<TeeTime>();
+            SqlConnection DataSource = new();
+            DataSource.ConnectionString = @"Persist Security Info=False;User=ptrninkov1;Password=rageking1A;server=dev1.baist.ca";
+            DataSource.Open();
+
+            SqlCommand GetTeeTimes = new()
+            {
+                Connection = DataSource,
+                CommandType = CommandType.StoredProcedure,
+                CommandText = "GetTeeTimesForMember"
+            };
+
+            // Member Number Parameter
+            SqlParameter Parameter = new()
+            {
+                ParameterName = "MemberNumber",
+                SqlDbType = SqlDbType.Int,
+                Direction = ParameterDirection.Input,
+                Value = memberNumber
+            };
+            GetTeeTimes.Parameters.Add(Parameter);
+
+            SqlDataReader DataReader = GetTeeTimes.ExecuteReader();
+
+            if (DataReader.HasRows)
+            {
+                while (DataReader.Read())
+                {
+                    TeeTime ListTeeTime = new();
+                    ListTeeTime.DesiredTime = TimeSpan.Parse(DataReader["Time"].ToString());
+                    ListTeeTime.DesiredDate = DateTime.Parse(DataReader["Date"].ToString());
+                    ListTeeTime.FullName = DataReader["FullName"].ToString();
+                    ListTeeTime.MemberOne = DataReader["MemberOne"].ToString();
+                    ListTeeTime.MemberTwo = DataReader["MemberTwo"].ToString();
+                    ListTeeTime.MemberThree = DataReader["MemberThree"].ToString();
+                    ListTeeTime.NumberOfCarts = (int)DataReader["NumberOfCarts"];
+                    ListTeeTime.RequestedTime = TimeSpan.Parse(DataReader["RequestedTime"].ToString());
+                    ListTeeTime.RequestedDate = DateTime.Parse(DataReader["RequestedDate"].ToString());
+                    MemberTeeTimes.Add(ListTeeTime);
+                }
+            }
+
+            DataReader.Close();
+            DataSource.Close();
+            return MemberTeeTimes;
+        }
+
+        public bool DeleteTeeTimeForMember(int memberNumber, DateTime date, TimeSpan time)
+        {
+            bool Confirmation = false;
+            SqlConnection DataSource = new();
+            DataSource.ConnectionString = @"Persist Security Info=False;User=ptrninkov1;Password=rageking1A;server=dev1.baist.ca";
+            DataSource.Open();
+
+            SqlCommand DeleteTeeTime = new()
+            {
+                Connection = DataSource,
+                CommandType = CommandType.StoredProcedure,
+                CommandText = "DeleteTeeTimeForMember"
+            };
+            
+            // Member Number Parameter
+            SqlParameter Parameter = new()
+            {
+                ParameterName = "MemberNumber",
+                SqlDbType = SqlDbType.Int,
+                Direction = ParameterDirection.Input,
+                Value = memberNumber
+            };
+            DeleteTeeTime.Parameters.Add(Parameter);
+
+            // Date Parameter
+            Parameter = new()
+            {
+                ParameterName = "Date",
+                SqlDbType = SqlDbType.Date,
+                Direction = ParameterDirection.Input,
+                Value = date.Date
+            };
+            DeleteTeeTime.Parameters.Add(Parameter);
+
+            // Time Parameter
+            Parameter = new()
+            {
+                ParameterName = "Time",
+                SqlDbType = SqlDbType.Time,
+                Direction = ParameterDirection.Input,
+                Value = time
+            };
+            DeleteTeeTime.Parameters.Add(Parameter);
+
+            Confirmation = DeleteTeeTime.ExecuteNonQuery() != 1;
+
+            DataSource.Close();
+            return Confirmation;
+        }
+
+        public bool UpdateTeeTime(TeeTime teeTime)
+        {
+            bool Confirmation = false;
+
+            SqlConnection DataSource = new();
+            DataSource.ConnectionString = @"Persist Security Info=False;User=ptrninkov1;Password=rageking1A;server=dev1.baist.ca";
+            DataSource.Open();
+
+            SqlCommand UpdateTeeTime = new()
+            {
+                Connection = DataSource,
+                CommandType = CommandType.StoredProcedure,
+                CommandText = "UpdateTeeTime"
+            };
+
+            SqlParameter Parameter = new()
+            {
+                ParameterName = "TeeTimeNumber",
+                SqlDbType = SqlDbType.Int,
+                Direction = ParameterDirection.Input,
+                Value = teeTime.TeeTimeNumber
+            };
+
+            UpdateTeeTime.Parameters.Add(Parameter);
+
+            Parameter = new()
+            {
+                ParameterName = "Time",
+                SqlDbType = SqlDbType.Time,
+                Direction = ParameterDirection.Input,
+                Value = teeTime.DesiredTime
+            };
+            UpdateTeeTime.Parameters.Add(Parameter);
+
+            Parameter = new()
+            {
+                ParameterName = "Date",
+                SqlDbType = SqlDbType.Date,
+                Direction = ParameterDirection.Input,
+                Value = teeTime.DesiredDate
+            };
+            UpdateTeeTime.Parameters.Add(Parameter);
+
+            Parameter = new()
+            {
+                ParameterName = "MemberOne",
+                SqlDbType = SqlDbType.Int,
+                Direction = ParameterDirection.Input,
+                Value = teeTime.MemberOne
+            };
+            UpdateTeeTime.Parameters.Add(Parameter);
+
+            Parameter = new()
+            {
+                ParameterName = "MemberTwo",
+                SqlDbType = SqlDbType.Int,
+                Direction = ParameterDirection.Input,
+                Value = teeTime.MemberTwo
+            };
+            UpdateTeeTime.Parameters.Add(Parameter);
+
+            Parameter = new()
+            {
+                ParameterName = "MemberThree",
+                SqlDbType = SqlDbType.Int,
+                Direction = ParameterDirection.Input,
+                Value = teeTime.MemberThree
+            };
+            UpdateTeeTime.Parameters.Add(Parameter);
+
+            Parameter = new()
+            {
+                ParameterName = "NumberOfCarts",
+                SqlDbType = SqlDbType.Int,
+                Direction = ParameterDirection.Input,
+                Value = teeTime.NumberOfCarts
+            };
+            UpdateTeeTime.Parameters.Add(Parameter);
+
+            Parameter = new()
+            {
+                ParameterName = "RequestedDate",
+                SqlDbType = SqlDbType.Date,
+                Direction = ParameterDirection.Input,
+                Value = teeTime.RequestedDate
+            };
+            UpdateTeeTime.Parameters.Add(Parameter);
+
+            Parameter = new()
+            {
+                ParameterName = "RequestedTime",
+                SqlDbType = SqlDbType.Time,
+                Direction = ParameterDirection.Input,
+                Value = teeTime.RequestedTime
+            };
+            UpdateTeeTime.Parameters.Add(Parameter);
+
+            Parameter = new()
+            {
+                ParameterName = "EmployeeName",
+                SqlDbType = SqlDbType.VarChar,
+                Direction = ParameterDirection.Input,
+                Value = teeTime.EmployeeName
+            };
+            UpdateTeeTime.Parameters.Add(Parameter);
+
+            Confirmation = UpdateTeeTime.ExecuteNonQuery() == 0;
+
+            DataSource.Close();
+            return Confirmation;
+        }
+
+        public TeeTime GetTeeTime(int teeTimeNumber)
+        {
+            TeeTime ScheduledTeeTime = new();
+
+            SqlConnection DataSource = new();
+            DataSource.ConnectionString = @"Persist Security Info=False;User=ptrninkov1;Password=rageking1A;server=dev1.baist.ca";
+            DataSource.Open();
+
+            SqlCommand GetTeeTime = new()
+            {
+                Connection = DataSource,
+                CommandText = "GetTeeTime",
+                CommandType = CommandType.StoredProcedure
+            };
+
+            SqlParameter Parameter = new()
+            {
+                ParameterName = "TeeTimeNumber",
+                SqlDbType = SqlDbType.Int,
+                Direction = ParameterDirection.Input,
+                Value = teeTimeNumber
+            };
+
+            GetTeeTime.Parameters.Add(Parameter);
+
+            SqlDataReader DataReader = GetTeeTime.ExecuteReader();
+
+            if (DataReader.HasRows)
+            {
+                DataReader.Read();
+                ScheduledTeeTime.DesiredTime = TimeSpan.Parse(DataReader["Time"].ToString());
+                ScheduledTeeTime.DesiredDate = DateTime.Parse(DataReader["Date"].ToString());
+                ScheduledTeeTime.MemberNumber = (int)DataReader["MemberNumber"];
+                ScheduledTeeTime.MemberOneID = (int)DataReader["MemberOne"];
+                ScheduledTeeTime.MemberTwoID = (int)DataReader["MemberTwo"];
+                ScheduledTeeTime.MemberThreeID = (int)DataReader["MemberThree"];
+                ScheduledTeeTime.NumberOfCarts = (int)DataReader["NumberOfCarts"];
+                ScheduledTeeTime.EmployeeName = DataReader["EmployeeName"].ToString();
+            }
+
+            DataReader.Close();
+            DataSource.Close();
+            return ScheduledTeeTime;
         }
     }
 }

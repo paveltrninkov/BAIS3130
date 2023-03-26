@@ -1,0 +1,171 @@
+﻿@page
+@model BAIS3130.Pages.ReviewApplicationModel
+@{
+}
+
+<h1>Review Applications</h1>
+
+<form  method="post">
+    <table>
+        <tr>
+            <td>
+                Application Number
+            </td>
+            <td>
+                <input type="number" name="ApplicationNumber" value="" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="submit" name="Submit" value="Find" />
+            </td>
+        </tr>
+    </table>
+</form>
+
+<form method="post">
+    <table>
+        <tr>
+            <td>
+                First Name
+            </td>
+            <td>
+                <input type="text" name="FirstName" value="@Model.FirstName" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Last Name
+            </td>
+            <td>
+                <input type="text" name="LastName" value="@Model.LastName" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Phone
+            </td>
+            <td>
+                <input type="text" name="Phone" value="@Model.Phone" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Alternate Phone
+            </td>
+            <td>
+                <input type="text" name="AlternatePhone" value="@Model.AlternatePhone" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Address
+            </td>
+            <td>
+                <input type="text" name="Address" value="@Model.Address" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Postal Code
+            </td>
+            <td>
+                <input type="text" name="PostalCode" value="@Model.PostalCode" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Email
+            </td>
+            <td>
+                <input type="text" name="Email" value="@Model.Email" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Signed
+            </td>
+            <td>
+                <input type="radio" name="Signed" value="@Model.Signed" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Date Of Birth
+            </td>
+            <td>
+                <input type="date" name="DOB" value="@Model.DOB" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Shareholder 1 Name
+            </td>
+            <td>
+                <input type="text" name="Shareholder1Name" value="@Model.Shareholder1Name" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Shareholder 1 Signed
+            </td>
+            <td>
+                <input type="text" name="Shareholder1Signed" value="@Model.Shareholder1Signed" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Shareholder 1 Date Signed
+            </td>
+            <td>
+                <input type="radio" name="Shareholder1Date" value="@Model.Shareholder1Date" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Shareholder 2 Name
+            </td>
+            <td>
+                <input type="text" name="Shareholder2Name" value="@Model.Shareholder2Name" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Shareholder 2 Signed
+            </td>
+            <td>
+                <input type="radio" name="Shareholder2Signed" value="@Model.Shareholder2Signed" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Shareholder 2 Date Signed
+            </td>
+            <td>
+                <input type="date" name="Shareholder2Date" value="@Model.Shareholder2Date"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Membership Level:
+            </td>
+            <td>
+                <select name="Membership">
+                    <option value="Gold" >Gold</option>
+                    <option value="Silver">Silver</option>
+                    <option value="Bronze">Bronze</option>
+                    <option value="Copper">Copper</option>
+                    <option value="Applicant" selected="selected">Applicant</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="submit" name="Submit" value="Accept" />
+            </td>
+            <td>
+                <input type="submit" name="Submit" value="Reject" />
+            </td>
+        </tr>
+    </table>
+</form>

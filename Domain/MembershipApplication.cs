@@ -5,21 +5,22 @@ using System.Threading.Tasks;
 
 namespace BAIS3130.Domain
 {
-    public class Member
+    public class MembershipApplication
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public string Membership { get; set; }
-        public string Username { get; set; }
-        public double Handicap { get; set; }
-        public string Password { get; set; }
         public string Phone { get; set; }
-        public int MemberNumber { get; set; }
         public string Address { get; set; }
         public string PostalCode { get; set; }
         public string Email { get; set; }
-        public bool Signed { get; set; }
+        public int Signed { get; set; }
         public DateTime DOB { get; set; }
         public string AlternatePhone { get; set; }
+        public string Shareholder1Name { get; set; }
+        public int Shareholder1Signed { get; set; }
+        public DateTime Shareholder1Date { get; set; }
+        public string Shareholder2Name { get; set; }
+        public DateTime Shareholder2Date { get; set; }
+        public int Shareholder2Signed { get; set; }
     }
 }

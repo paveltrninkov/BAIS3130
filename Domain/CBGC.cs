@@ -21,5 +21,79 @@ namespace BAIS3130.Domain
             bool confirmation = RequestDirector.ScheduleStandingTeeTime(standingTeeTime);
             return confirmation;
         }
+        
+        public List<TeeTime> GetTeeTimesForMember(int memberNumber)
+        {
+            TeeTimes RequestDirector = new();
+            List<TeeTime> returnList = RequestDirector.GetTeeTimesForMembers(memberNumber);
+            return returnList;
+        }
+
+        public List<StandingTeeTime> GetStandingTeeTimesForMember(int memberNumber)
+        {
+            StandingTeeTimes RequestDirector = new();
+            List<StandingTeeTime> returnList = RequestDirector.GetStandingTeeTimeForMember(memberNumber);
+            return returnList;
+        }
+
+        public bool CancelStandingTeeTime(int standingTeeTimeNumber)
+        {
+            bool Confirmation;
+            StandingTeeTimes RequestDirector = new();
+            Confirmation = RequestDirector.DeleteStandingTeeTime(standingTeeTimeNumber);
+            return Confirmation;
+        }
+        public bool CancelTeeTime(int memberNumber, TimeSpan time, DateTime date)
+        {
+            TeeTimes RequestDirector = new();
+            bool Confirmation = RequestDirector.DeleteTeeTimeForMember(memberNumber, date, time);
+            return Confirmation;
+        }
+        public double ViewHandicap(int memberNumber)
+        {
+            Members RequestDirector = new();
+            double Handicap = RequestDirector.ViewPlayerHandicap(memberNumber);
+            return Handicap;
+        }
+        public bool ApplyMembership(MembershipApplication member)
+        {
+            Members RequestDirector = new();
+            bool Confirmation = RequestDirector.ApplyMembership(member);
+            return Confirmation;
+        }
+
+        public MembershipApplication ViewApplication(int applicationNumber)
+        {
+            Members RequestDirector = new();
+            MembershipApplication Application = RequestDirector.ViewApplication(applicationNumber);
+            return Application;
+        }
+
+        public bool RegisterApplicant(MembershipApplication application, string membership)
+        {
+            Members RequestDirector = new();
+            bool Confirmation = RequestDirector.RegisterApplicant(application, membership);
+            return Confirmation;
+        }
+        public bool RejectApplication(int applicationNumber)
+        {
+            Members RequestDirector = new();
+            bool Confirmation = RequestDirector.DeleteApplication(applicationNumber);
+            return Confirmation;
+        }
+
+        public bool RecordScore(Scorecard scorecard)
+        {
+            Scorecards RequestDirector = new();
+            bool Confirmation = RequestDirector.RecordScorecard(scorecard);
+            return Confirmation;
+        }
+
+        public Member GetMemberPassword(string username)
+        {
+            Members RequestDirector = new();
+            Member MemberLogin = RequestDirector.GetMemberPassword(username);
+            return MemberLogin;
+        }
     }
 }
