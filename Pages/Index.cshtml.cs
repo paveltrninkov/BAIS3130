@@ -20,10 +20,6 @@ namespace BAIS3130.Pages
 
         public void OnGet()
         {
-            if (HttpContext.Session.GetInt32("LoggedIn") == null)
-            {
-                Response.Redirect("Login");
-            }
         }
     }
 }

@@ -95,5 +95,11 @@ namespace BAIS3130.Domain
             Member MemberLogin = RequestDirector.GetMemberPassword(username);
             return MemberLogin;
         }
+        public List<Member> GetMemberLogins()
+        {
+            Members RequestDirector = new();
+            List<Member> MemberLogins = RequestDirector.GetMemersLogins();
+            return MemberLogins;
+        }
     }
 }

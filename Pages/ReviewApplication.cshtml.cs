@@ -81,10 +81,10 @@ namespace BAIS3130.Pages
                     PostalCode = Application.PostalCode;
                     Shareholder1Date = Application.Shareholder1Date;
                     Shareholder1Name = Application.Shareholder1Name;
-                    Shareholder1Signed = Application.Shareholder1Signed == 1 ? true : false;
+                    Shareholder1Signed = Application.Shareholder1Signed;
                     Shareholder2Date = Application.Shareholder2Date;
                     Shareholder2Name = Application.Shareholder2Name;
-                    Shareholder2Signed = Application.Shareholder2Signed == 1 ? true : false;
+                    Shareholder2Signed = Application.Shareholder2Signed;
                     break;
                 case "Accept":
                     Application = new()
@@ -99,10 +99,10 @@ namespace BAIS3130.Pages
                         PostalCode = PostalCode,
                         Shareholder1Date = Shareholder1Date,
                         Shareholder1Name = Shareholder1Name,
-                        Shareholder1Signed = Shareholder1Signed ? 1 : 0,
+                        Shareholder1Signed = Shareholder1Signed,
                         Shareholder2Date = Shareholder2Date,
                         Shareholder2Name = Shareholder2Name,
-                        Shareholder2Signed = Shareholder2Signed ? 1: 0
+                        Shareholder2Signed = Shareholder2Signed
                     };
                     RequestDirector.RegisterApplicant(Application, Membership);
                     break;

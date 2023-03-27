@@ -29,3 +29,43 @@
     </table>
     @Model.Message
 </form>
+
+<table>
+    <tr>
+        <td>
+            First Name
+        </td>
+        <td>
+            Last Name
+        </td>
+        <td>
+            Username
+        </td>
+        <td>
+            Password
+        </td>
+        <td>
+            Membership Level
+        </td>
+    </tr>
+    @foreach(var Member in Model.MemberLogins)
+            {
+                <tr>
+                    <td>
+                        @Member.FirstName
+                    </td>
+                    <td>
+                        @Member.LastName
+                    </td>
+                    <td>
+                        @Member.Username
+                    </td>
+                    <td>
+                        @Member.Password
+                    </td>
+                    <td>
+                        @Member.Membership
+                    </td>
+                </tr>
+            }
+</table>

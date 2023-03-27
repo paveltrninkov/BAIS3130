@@ -5,6 +5,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Data;
 using BAIS3130.Domain;
+using System.IO;
+using Microsoft.Extensions.Configuration;
 
 namespace BAIS3130.Technical_Services
 {
@@ -13,8 +15,15 @@ namespace BAIS3130.Technical_Services
         public double ViewPlayerHandicap (int memberNumber)
         {
             double ReturnHandicap;
+            //SqlConnection DataSource = new();
+            //DataSource.ConnectionString = @"Persist Security Info=False;User=ptrninkov1;Password=rageking1A;server=dev1.baist.ca";
+
             SqlConnection DataSource = new();
-            DataSource.ConnectionString = @"Persist Security Info=False;User=ptrninkov1;Password=rageking1A;server=dev1.baist.ca";
+            ConfigurationBuilder DatabaseUsersBuilder = new();
+            DatabaseUsersBuilder.SetBasePath(Directory.GetCurrentDirectory());
+            DatabaseUsersBuilder.AddJsonFile("appsettings.json");
+            IConfiguration DatabaseUsersConfiguration = DatabaseUsersBuilder.Build();
+            DataSource.ConnectionString = DatabaseUsersConfiguration.GetConnectionString("Connection");
             DataSource.Open();
 
             SqlCommand ViewHandicap = new()
@@ -43,8 +52,15 @@ namespace BAIS3130.Technical_Services
         public bool ApplyMembership(MembershipApplication application)
         {
             bool Confirmation = false;
+            //SqlConnection DataSource = new();
+            //DataSource.ConnectionString = @"Persist Security Info=False;User=ptrninkov1;Password=rageking1A;server=dev1.baist.ca";
+
             SqlConnection DataSource = new();
-            DataSource.ConnectionString = @"Persist Security Info=False;User=ptrninkov1;Password=rageking1A;server=dev1.baist.ca";
+            ConfigurationBuilder DatabaseUsersBuilder = new();
+            DatabaseUsersBuilder.SetBasePath(Directory.GetCurrentDirectory());
+            DatabaseUsersBuilder.AddJsonFile("appsettings.json");
+            IConfiguration DatabaseUsersConfiguration = DatabaseUsersBuilder.Build();
+            DataSource.ConnectionString = DatabaseUsersConfiguration.GetConnectionString("Connection");
             DataSource.Open();
 
             SqlCommand ApplyMembership = new()
@@ -139,7 +155,7 @@ namespace BAIS3130.Technical_Services
                 ParameterName = "ApplicantSigned",
                 SqlDbType = SqlDbType.Bit,
                 Direction = ParameterDirection.Input,
-                Value = application.Signed == 1 ? true : false
+                Value = application.Signed
             };
             ApplyMembership.Parameters.Add(Parameter);
 
@@ -218,8 +234,15 @@ namespace BAIS3130.Technical_Services
         public MembershipApplication ViewApplication(int applicationNumber)
         {
             MembershipApplication MemberApplication = new();
+            //SqlConnection DataSource = new();
+            //DataSource.ConnectionString = @"Persist Security Info=False;User=ptrninkov1;Password=rageking1A;server=dev1.baist.ca";
+
             SqlConnection DataSource = new();
-            DataSource.ConnectionString = @"Persist Security Info=False;User=ptrninkov1;Password=rageking1A;server=dev1.baist.ca";
+            ConfigurationBuilder DatabaseUsersBuilder = new();
+            DatabaseUsersBuilder.SetBasePath(Directory.GetCurrentDirectory());
+            DatabaseUsersBuilder.AddJsonFile("appsettings.json");
+            IConfiguration DatabaseUsersConfiguration = DatabaseUsersBuilder.Build();
+            DataSource.ConnectionString = DatabaseUsersConfiguration.GetConnectionString("Connection");
             DataSource.Open();
 
             SqlCommand ViewApplication = new()
@@ -253,10 +276,10 @@ namespace BAIS3130.Technical_Services
                     AlternatePhone = DataReader["AlternatePhone"].ToString(),
                     PostalCode = DataReader["PostalCode"].ToString(),
                     Address = DataReader["Address"].ToString(),
-                    Shareholder1Signed = Int32.Parse(DataReader["Shareholder1Signed"].ToString()),
-                    Shareholder2Signed = Int32.Parse(DataReader["Shareholder2Signed"].ToString()),
+                    Shareholder1Signed = (bool)DataReader["Shareholder1Signed"],
+                    Shareholder2Signed = (bool)DataReader["Shareholder2Signed"],
                     DOB = DateTime.Parse(DataReader["DateOfBirth"].ToString()),
-                    Signed = Int32.Parse(DataReader["ApplicantSigned"].ToString()),
+                    Signed = (bool)DataReader["ApplicantSigned"],
                     Shareholder1Name = DataReader["Shareholder1Name"].ToString(),
                     Shareholder2Name = DataReader["Shareholder2Name"].ToString(),
                     Shareholder1Date = DateTime.Parse(DataReader["Shareholder1Date"].ToString()),
@@ -271,8 +294,15 @@ namespace BAIS3130.Technical_Services
         public bool RegisterApplicant(MembershipApplication application, string membership)
         {
             bool Confirmation = false;
+            //SqlConnection DataSource = new();
+            //DataSource.ConnectionString = @"Persist Security Info=False;User=ptrninkov1;Password=rageking1A;server=dev1.baist.ca";
+
             SqlConnection DataSource = new();
-            DataSource.ConnectionString = @"Persist Security Info=False;User=ptrninkov1;Password=rageking1A;server=dev1.baist.ca";
+            ConfigurationBuilder DatabaseUsersBuilder = new();
+            DatabaseUsersBuilder.SetBasePath(Directory.GetCurrentDirectory());
+            DatabaseUsersBuilder.AddJsonFile("appsettings.json");
+            IConfiguration DatabaseUsersConfiguration = DatabaseUsersBuilder.Build();
+            DataSource.ConnectionString = DatabaseUsersConfiguration.GetConnectionString("Connection");
             DataSource.Open();
 
             SqlCommand RegisterApplicant = new()
@@ -378,8 +408,15 @@ namespace BAIS3130.Technical_Services
         public bool DeleteApplication(int applicationNumber)
         {
             bool Confirmation = false;
+            //SqlConnection DataSource = new();
+            //DataSource.ConnectionString = @"Persist Security Info=False;User=ptrninkov1;Password=rageking1A;server=dev1.baist.ca";
+
             SqlConnection DataSource = new();
-            DataSource.ConnectionString = @"Persist Security Info=False;User=ptrninkov1;Password=rageking1A;server=dev1.baist.ca";
+            ConfigurationBuilder DatabaseUsersBuilder = new();
+            DatabaseUsersBuilder.SetBasePath(Directory.GetCurrentDirectory());
+            DatabaseUsersBuilder.AddJsonFile("appsettings.json");
+            IConfiguration DatabaseUsersConfiguration = DatabaseUsersBuilder.Build();
+            DataSource.ConnectionString = DatabaseUsersConfiguration.GetConnectionString("Connection");
             DataSource.Open();
 
             SqlCommand DeleteApplication = new()
@@ -410,6 +447,13 @@ namespace BAIS3130.Technical_Services
 
             SqlConnection DataSource = new();
             DataSource.ConnectionString = @"Persist Security Info=False;User=ptrninkov1;Password=rageking1A;server=dev1.baist.ca";
+
+            //SqlConnection DataSource = new();
+            //ConfigurationBuilder DatabaseUsersBuilder = new();
+            //DatabaseUsersBuilder.SetBasePath(Directory.GetCurrentDirectory());
+            //DatabaseUsersBuilder.AddJsonFile("appsettings.json");
+            //IConfiguration DatabaseUsersConfiguration = DatabaseUsersBuilder.Build();
+            //DataSource.ConnectionString = DatabaseUsersConfiguration.GetConnectionString("Connection");
             DataSource.Open();
 
             SqlCommand GetMemberPassword = new()
@@ -450,8 +494,15 @@ namespace BAIS3130.Technical_Services
         {
             Member MemberInformation = new();
 
+            //SqlConnection DataSource = new();
+            //DataSource.ConnectionString = @"Persist Security Info=False;User=ptrninkov1;Password=rageking1A;server=dev1.baist.ca";
+
             SqlConnection DataSource = new();
-            DataSource.ConnectionString = @"Persist Security Info=False;User=ptrninkov1;Password=rageking1A;server=dev1.baist.ca";
+            ConfigurationBuilder DatabaseUsersBuilder = new();
+            DatabaseUsersBuilder.SetBasePath(Directory.GetCurrentDirectory());
+            DatabaseUsersBuilder.AddJsonFile("appsettings.json");
+            IConfiguration DatabaseUsersConfiguration = DatabaseUsersBuilder.Build();
+            DataSource.ConnectionString = DatabaseUsersConfiguration.GetConnectionString("Name");
             DataSource.Open();
 
             SqlCommand ViewMember = new()
@@ -493,6 +544,51 @@ namespace BAIS3130.Technical_Services
             DataReader.Close();
             DataSource.Close();
             return MemberInformation;
+        }
+
+        public List<Member> GetMemersLogins()
+        {
+            List<Member> MemberLogins = new();
+
+            SqlConnection DataSource = new();
+            DataSource.ConnectionString = @"Persist Security Info=False;User=ptrninkov1;Password=rageking1A;server=dev1.baist.ca";
+
+            //SqlConnection DataSource = new();
+            //ConfigurationBuilder DatabaseUsersBuilder = new();
+            //DatabaseUsersBuilder.SetBasePath(Directory.GetCurrentDirectory());
+            //DatabaseUsersBuilder.AddJsonFile("appsettings.json");
+            //IConfiguration DatabaseUsersConfiguration = DatabaseUsersBuilder.Build();
+            //DataSource.ConnectionString = DatabaseUsersConfiguration.GetConnectionString("Connection");
+            DataSource.Open();
+
+            SqlCommand GetAllMembersLoginInformation = new()
+            {
+                Connection = DataSource,
+                CommandText = "GetAllMembersLoginInformation",
+                CommandType = CommandType.StoredProcedure
+            };
+
+            SqlDataReader DataReader = GetAllMembersLoginInformation.ExecuteReader();
+
+            if (DataReader.HasRows)
+            {
+                while (DataReader.Read())
+                {
+                    Member MemberLogin = new()
+                    {
+                        FirstName = DataReader["FirstName"].ToString(),
+                        LastName = DataReader["LastName"].ToString(),
+                        Username = DataReader["Username"].ToString(),
+                        Password = DataReader["Password"].ToString(),
+                        Membership = DataReader["Membership"].ToString()
+                    };
+                    MemberLogins.Add(MemberLogin);
+                }
+            }
+
+            DataReader.Close();
+            DataSource.Close();
+            return MemberLogins;
         }
     }
 }

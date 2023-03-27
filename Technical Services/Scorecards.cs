@@ -1,7 +1,9 @@
 ﻿using BAIS3130.Domain;
 using Microsoft.Data.SqlClient;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -12,8 +14,15 @@ namespace BAIS3130.Technical_Services
         public bool RecordScorecard(Scorecard scorecard)
         {
             bool Confirmation = false;
+            //SqlConnection DataSource = new();
+            //DataSource.ConnectionString = @"Persist Security Info=False;User=ptrninkov1;Password=rageking1A;server=dev1.baist.ca";
+
             SqlConnection DataSource = new();
-            DataSource.ConnectionString = @"Persist Security Info=False;User=ptrninkov1;Password=rageking1A;server=dev1.baist.ca";
+            ConfigurationBuilder DatabaseUsersBuilder = new();
+            DatabaseUsersBuilder.SetBasePath(Directory.GetCurrentDirectory());
+            DatabaseUsersBuilder.AddJsonFile("appsettings.json");
+            IConfiguration DatabaseUsersConfiguration = DatabaseUsersBuilder.Build();
+            DataSource.ConnectionString = DatabaseUsersConfiguration.GetConnectionString("Connection");
             DataSource.Open();
 
             SqlCommand RecordScore = new()

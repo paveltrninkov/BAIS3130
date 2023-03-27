@@ -11,6 +11,7 @@ namespace BAIS3130.Pages
 {
     public class LoginModel : PageModel
     {
+        public List<Member> MemberLogins = new();
         public string Message { get; set; }
         [BindProperty]
         public string Username { get; set; }
@@ -19,11 +20,14 @@ namespace BAIS3130.Pages
         public void OnGet()
         {
             HttpContext.Session.Clear();
+            CBGC RequestDirector = new();
+            MemberLogins = RequestDirector.GetMemberLogins();
         }
         public void OnPost()
         {
-            Member LoginMember = new();
             CBGC RequestDirector = new();
+            MemberLogins = RequestDirector.GetMemberLogins();
+            Member LoginMember = new();
             if (!String.IsNullOrEmpty(Username))
             {
                 LoginMember = RequestDirector.GetMemberPassword(Username);
@@ -39,7 +43,7 @@ namespace BAIS3130.Pages
                     HttpContext.Session.SetString("Membership", LoginMember.Membership.ToString());
                     HttpContext.Session.SetInt32("LoggedIn", 1);
                     HttpContext.Session.SetInt32("Number", (int)LoginMember.MemberNumber);
-                    Response.Redirect("/ScheduleTeeTime");
+                    Response.Redirect("Index");
                 }
                 else
                 {

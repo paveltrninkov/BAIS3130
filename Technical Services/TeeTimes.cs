@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using BAIS3130.Domain;
 using Microsoft.Data.SqlClient;
 using System.Data;
+using Microsoft.Extensions.Configuration;
+using System.IO;
 
 namespace BAIS3130.Technical_Services
 {
@@ -13,8 +15,15 @@ namespace BAIS3130.Technical_Services
         public bool ScheduleTeeTime (TeeTime teeTime, int memberNumber)
         {
             bool Confirmation = false;
+            //SqlConnection DataSource = new();
+            //DataSource.ConnectionString = @"Persist Security Info=False;User=ptrninkov1;Password=rageking1A;server=dev1.baist.ca";
+
             SqlConnection DataSource = new();
-            DataSource.ConnectionString = @"Persist Security Info=False;User=ptrninkov1;Password=rageking1A;server=dev1.baist.ca";
+            ConfigurationBuilder DatabaseUsersBuilder = new();
+            DatabaseUsersBuilder.SetBasePath(Directory.GetCurrentDirectory());
+            DatabaseUsersBuilder.AddJsonFile("appsettings.json");
+            IConfiguration DatabaseUsersConfiguration = DatabaseUsersBuilder.Build();
+            DataSource.ConnectionString = DatabaseUsersConfiguration.GetConnectionString("Connection");
             DataSource.Open();
 
             SqlCommand ScheduleTeeTime = new()
@@ -143,8 +152,15 @@ namespace BAIS3130.Technical_Services
         public List<TeeTime> GetTeeTimesForMembers(int memberNumber)
         {
             List<TeeTime> MemberTeeTimes = new List<TeeTime>();
+            //SqlConnection DataSource = new();
+            //DataSource.ConnectionString = @"Persist Security Info=False;User=ptrninkov1;Password=rageking1A;server=dev1.baist.ca";
+
             SqlConnection DataSource = new();
-            DataSource.ConnectionString = @"Persist Security Info=False;User=ptrninkov1;Password=rageking1A;server=dev1.baist.ca";
+            ConfigurationBuilder DatabaseUsersBuilder = new();
+            DatabaseUsersBuilder.SetBasePath(Directory.GetCurrentDirectory());
+            DatabaseUsersBuilder.AddJsonFile("appsettings.json");
+            IConfiguration DatabaseUsersConfiguration = DatabaseUsersBuilder.Build();
+            DataSource.ConnectionString = DatabaseUsersConfiguration.GetConnectionString("Connection");
             DataSource.Open();
 
             SqlCommand GetTeeTimes = new()
@@ -192,8 +208,15 @@ namespace BAIS3130.Technical_Services
         public bool DeleteTeeTimeForMember(int memberNumber, DateTime date, TimeSpan time)
         {
             bool Confirmation = false;
+            //SqlConnection DataSource = new();
+            //DataSource.ConnectionString = @"Persist Security Info=False;User=ptrninkov1;Password=rageking1A;server=dev1.baist.ca";
+
             SqlConnection DataSource = new();
-            DataSource.ConnectionString = @"Persist Security Info=False;User=ptrninkov1;Password=rageking1A;server=dev1.baist.ca";
+            ConfigurationBuilder DatabaseUsersBuilder = new();
+            DatabaseUsersBuilder.SetBasePath(Directory.GetCurrentDirectory());
+            DatabaseUsersBuilder.AddJsonFile("appsettings.json");
+            IConfiguration DatabaseUsersConfiguration = DatabaseUsersBuilder.Build();
+            DataSource.ConnectionString = DatabaseUsersConfiguration.GetConnectionString("Connection");
             DataSource.Open();
 
             SqlCommand DeleteTeeTime = new()
@@ -243,8 +266,15 @@ namespace BAIS3130.Technical_Services
         {
             bool Confirmation = false;
 
+            //SqlConnection DataSource = new();
+            //DataSource.ConnectionString = @"Persist Security Info=False;User=ptrninkov1;Password=rageking1A;server=dev1.baist.ca";
+
             SqlConnection DataSource = new();
-            DataSource.ConnectionString = @"Persist Security Info=False;User=ptrninkov1;Password=rageking1A;server=dev1.baist.ca";
+            ConfigurationBuilder DatabaseUsersBuilder = new();
+            DatabaseUsersBuilder.SetBasePath(Directory.GetCurrentDirectory());
+            DatabaseUsersBuilder.AddJsonFile("appsettings.json");
+            IConfiguration DatabaseUsersConfiguration = DatabaseUsersBuilder.Build();
+            DataSource.ConnectionString = DatabaseUsersConfiguration.GetConnectionString("Connection");
             DataSource.Open();
 
             SqlCommand UpdateTeeTime = new()
@@ -355,8 +385,15 @@ namespace BAIS3130.Technical_Services
         {
             TeeTime ScheduledTeeTime = new();
 
+            //SqlConnection DataSource = new();
+            //DataSource.ConnectionString = @"Persist Security Info=False;User=ptrninkov1;Password=rageking1A;server=dev1.baist.ca";
+
             SqlConnection DataSource = new();
-            DataSource.ConnectionString = @"Persist Security Info=False;User=ptrninkov1;Password=rageking1A;server=dev1.baist.ca";
+            ConfigurationBuilder DatabaseUsersBuilder = new();
+            DatabaseUsersBuilder.SetBasePath(Directory.GetCurrentDirectory());
+            DatabaseUsersBuilder.AddJsonFile("appsettings.json");
+            IConfiguration DatabaseUsersConfiguration = DatabaseUsersBuilder.Build();
+            DataSource.ConnectionString = DatabaseUsersConfiguration.GetConnectionString("Connection");
             DataSource.Open();
 
             SqlCommand GetTeeTime = new()
