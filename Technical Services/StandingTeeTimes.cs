@@ -143,15 +143,15 @@ namespace BAIS3130.Technical_Services
         public List<StandingTeeTime> GetStandingTeeTimeForMember(int memberNumber)
         {
             List<StandingTeeTime> StandingTeeTimes = new();
-            SqlConnection DataSource = new();
-            DataSource.ConnectionString = @"Persist Security Info=False;User=ptrninkov1;Password=rageking1A;server=dev1.baist.ca";
-
             //SqlConnection DataSource = new();
-            //ConfigurationBuilder DatabaseUsersBuilder = new();
-            //DatabaseUsersBuilder.SetBasePath(Directory.GetCurrentDirectory());
-            //DatabaseUsersBuilder.AddJsonFile("appsettings.json");
-            //IConfiguration DatabaseUsersConfiguration = DatabaseUsersBuilder.Build();
-            //DataSource.ConnectionString = DatabaseUsersConfiguration.GetConnectionString("Connection");
+            //DataSource.ConnectionString = @"Persist Security Info=False;User=ptrninkov1;Password=rageking1A;server=dev1.baist.ca";
+
+            SqlConnection DataSource = new();
+            ConfigurationBuilder DatabaseUsersBuilder = new();
+            DatabaseUsersBuilder.SetBasePath(Directory.GetCurrentDirectory());
+            DatabaseUsersBuilder.AddJsonFile("appsettings.json");
+            IConfiguration DatabaseUsersConfiguration = DatabaseUsersBuilder.Build();
+            DataSource.ConnectionString = DatabaseUsersConfiguration.GetConnectionString("Connection");
             DataSource.Open();
 
             SqlCommand GetStandingTeeTimeForMember = new()
@@ -190,7 +190,7 @@ namespace BAIS3130.Technical_Services
                     StandingTeeTime.EndDate = DataReader["RequestedEndDate"].ToString();
                     StandingTeeTime.StartDate = DataReader["RequestedStartDate"].ToString();
                     StandingTeeTime.DayOfWeek = (string)DataReader["RequestedDayOfWeek"];
-                    StandingTeeTime.RequestedTime = DataReader["RequestedTeeTime"].ToString();
+                    StandingTeeTime.RequestedTime = DataReader["ApprovedTeeTime"].ToString();
 
                     StandingTeeTimes.Add(StandingTeeTime);
                 }
