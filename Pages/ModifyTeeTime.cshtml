@@ -1,5 +1,5 @@
 ﻿@page
-@model BAIS3130.Pages.ScheduleStandingTeeTimeModel
+@model BAIS3130.Pages.ModifyTeeTimeModel
 @{
 }
 
@@ -23,115 +23,118 @@
                 Requested Time
             </th>
             <th>
-                Start Date
+                Requested Date
             </th>
             <th>
-                End Date
+                Desired Time
             </th>
             <th>
-                Priority Number
+                Desired Date
             </th>
             <th>
-                Day Of Week
+                Number Of Carts
             </th>
             <th>
-                Delete
+                
             </th>
         </tr>
-        @{int StandingTeeTimePos = 0; }
-        @foreach (var teeTime in Model.StandingTeeTimes)
+        @{int TeeTimePos = 0; }
+        @foreach (var teeTime in Model.TeeTimes)
         {
             <tr>
                 <td>
-                    @teeTime.ShareholderMemberName
+                    @teeTime.FullName
                 </td>
                 <td>
-                    @teeTime.GroupMemberOne 
+                    @teeTime.MemberOneID
                 </td>
                 <td>
-                    @teeTime.GroupMemberTwo
+                    @teeTime.MemberTwoID
                 </td>
                 <td>
-                    @teeTime.GroupMemberThree
+                    @teeTime.MemberThreeID
                 </td>
                 <td>
-                    @teeTime.RequestedTeeTime
+                    @teeTime.RequestedTime
                 </td>
                 <td>
-                    @teeTime.StartDate
+                    @teeTime.RequestedDate
                 </td>
                 <td>
-                    @teeTime.EndDate
+                    @teeTime.DesiredTime
                 </td>
                 <td>
-                    @teeTime.PriorityNumber
+                    @teeTime.DesiredDate
                 </td>
                 <td>
-                    @teeTime.DayOfWeek
+                    @teeTime.NumberOfCarts
                 </td>
                 <td>
-                    <input type="submit" name="Submit" value="@StandingTeeTimePos"/>
+                    <button type="submit" value="@TeeTimePos" name="Submit">Select to Modify</button>
                 </td>
             </tr>
         }
     </table>
 </form>
 
+
 <form method="post">
     <table>
         <tr>
             <td>
-                Member Number:
+                Tee Time Date:
             </td>
             <td>
-                <input type="number" name="MemberOne" value="" />
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Member Number:
-            </td>
-            <td>
-                <input type="number" name="MemberTwo" value="" />
+                <input type="text" name="TeeTimeDate" value="@Model.TeeTimeDate" />
             </td>
         </tr>
         <tr>
             <td>
-                Member Number:
+                Tee Time:
             </td>
             <td>
-                <input type="number" name="MemberThree" value="" />
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Start Date:
-            </td>
-            <td>
-                <input type="date" name="StartDate" value="" />
+                <input type="text" name="TeeTimeTime" value="@Model.TeeTimeTime" />
             </td>
         </tr>
         <tr>
             <td>
-                Requested Tee Time:
+                Member One:
             </td>
             <td>
-                <input type="time" name="RequestedTime" value="" />
-            </td>
-        </tr>
-        <tr>
-            <td>
-                End Date
-            </td>
-            <td>
-                <input type="date" name="EndDate" value="" />
+                <input type="text" name="MemberOne" value="@Model.MemberOne" />
             </td>
         </tr>
         <tr>
             <td>
-                <input type="submit" name="Submit" value="Schedule Standing Tee Time" />
+                Member Two:
+            </td>
+            <td>
+                <input type="text" name="MemberTwo" value="@Model.MemberTwo" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Member Three:
+            </td>
+            <td>
+                <input type="text" name="MemberThree" value="@Model.MemberThree" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Carts Requested:
+            </td>
+            <td>
+                <input type="number" name="NumberOfCarts" value="@Model.NumberOfCarts" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="submit" name="Submit" value="Cancel" />
+            </td>
+            <td>
+                <input type="submit" name="Submit" value="Modify" />
             </td>
         </tr>
     </table>
-    @Model.Message
 </form>

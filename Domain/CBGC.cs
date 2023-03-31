@@ -8,20 +8,20 @@ namespace BAIS3130.Domain
 {
     public class CBGC
     {
-        public bool BookTeeTime (TeeTime teeTime, int memberNumber)
+        public bool BookTeeTime(TeeTime teeTime)
         {
             TeeTimes RequestDirector = new();
-            bool confirmation = RequestDirector.ScheduleTeeTime(teeTime, memberNumber);
+            bool confirmation = RequestDirector.ScheduleTeeTime(teeTime);
             return confirmation;
         }
 
-        public bool RequestStandingTeeTime (StandingTeeTime standingTeeTime)
+        public bool RequestStandingTeeTime(StandingTeeTime standingTeeTime)
         {
             StandingTeeTimes RequestDirector = new();
             bool confirmation = RequestDirector.ScheduleStandingTeeTime(standingTeeTime);
             return confirmation;
         }
-        
+
         public List<TeeTime> GetTeeTimesForMember(int memberNumber)
         {
             TeeTimes RequestDirector = new();
@@ -100,6 +100,12 @@ namespace BAIS3130.Domain
             Members RequestDirector = new();
             List<Member> MemberLogins = RequestDirector.GetMemersLogins();
             return MemberLogins;
+        }
+        public bool ModifyTeeTime(TeeTime updatedTeeTime)
+        {
+            TeeTimes RequestDirector = new();
+            bool Confirmation = RequestDirector.UpdateTeeTime(updatedTeeTime);
+            return Confirmation;
         }
     }
 }

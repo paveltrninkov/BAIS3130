@@ -12,18 +12,18 @@ namespace BAIS3130.Technical_Services
 {
     public class TeeTimes
     {
-        public bool ScheduleTeeTime (TeeTime teeTime, int memberNumber)
+        public bool ScheduleTeeTime (TeeTime teeTime)
         {
             bool Confirmation = false;
-            //SqlConnection DataSource = new();
-            //DataSource.ConnectionString = @"Persist Security Info=False;User=ptrninkov1;Password=rageking1A;server=dev1.baist.ca";
-
             SqlConnection DataSource = new();
-            ConfigurationBuilder DatabaseUsersBuilder = new();
-            DatabaseUsersBuilder.SetBasePath(Directory.GetCurrentDirectory());
-            DatabaseUsersBuilder.AddJsonFile("appsettings.json");
-            IConfiguration DatabaseUsersConfiguration = DatabaseUsersBuilder.Build();
-            DataSource.ConnectionString = DatabaseUsersConfiguration.GetConnectionString("Connection");
+            DataSource.ConnectionString = @"Persist Security Info=False;User=ptrninkov1;Password=rageking1A;server=dev1.baist.ca";
+
+            //SqlConnection DataSource = new();
+            //ConfigurationBuilder DatabaseUsersBuilder = new();
+            //DatabaseUsersBuilder.SetBasePath(Directory.GetCurrentDirectory());
+            //DatabaseUsersBuilder.AddJsonFile("appsettings.json");
+            //IConfiguration DatabaseUsersConfiguration = DatabaseUsersBuilder.Build();
+            //DataSource.ConnectionString = DatabaseUsersConfiguration.GetConnectionString("Connection");
             DataSource.Open();
 
             SqlCommand ScheduleTeeTime = new()
@@ -49,7 +49,7 @@ namespace BAIS3130.Technical_Services
                 ParameterName = "MemberNumber",
                 SqlDbType = SqlDbType.Int,
                 Direction = ParameterDirection.Input,
-                Value = memberNumber
+                Value = teeTime.MemberNumber
             };
             ScheduleTeeTime.Parameters.Add(Parameter);
 
@@ -89,7 +89,7 @@ namespace BAIS3130.Technical_Services
                 ParameterName = "MemberOne",
                 SqlDbType = SqlDbType.Int,
                 Direction = ParameterDirection.Input,
-                Value = teeTime.MemberOne
+                Value = teeTime.MemberOneID
             };
             ScheduleTeeTime.Parameters.Add(Parameter);
 
@@ -99,7 +99,7 @@ namespace BAIS3130.Technical_Services
                 ParameterName = "MemberTwo",
                 SqlDbType = SqlDbType.Int,
                 Direction = ParameterDirection.Input,
-                Value = teeTime.MemberTwo
+                Value = teeTime.MemberTwoID
             };
             ScheduleTeeTime.Parameters.Add(Parameter);
 
@@ -109,7 +109,7 @@ namespace BAIS3130.Technical_Services
                 ParameterName = "MemberThree",
                 SqlDbType = SqlDbType.Int,
                 Direction = ParameterDirection.Input,
-                Value = teeTime.MemberThree
+                Value = teeTime.MemberThreeID
             };
             ScheduleTeeTime.Parameters.Add(Parameter);
 
@@ -143,7 +143,8 @@ namespace BAIS3130.Technical_Services
             };
             ScheduleTeeTime.Parameters.Add(Parameter);
 
-            Confirmation = (int)ScheduleTeeTime.ExecuteNonQuery() != 1;
+            ScheduleTeeTime.ExecuteNonQuery();
+            Confirmation = true;
             DataSource.Close();
             return Confirmation;
         }
@@ -152,15 +153,15 @@ namespace BAIS3130.Technical_Services
         public List<TeeTime> GetTeeTimesForMembers(int memberNumber)
         {
             List<TeeTime> MemberTeeTimes = new List<TeeTime>();
-            //SqlConnection DataSource = new();
-            //DataSource.ConnectionString = @"Persist Security Info=False;User=ptrninkov1;Password=rageking1A;server=dev1.baist.ca";
-
             SqlConnection DataSource = new();
-            ConfigurationBuilder DatabaseUsersBuilder = new();
-            DatabaseUsersBuilder.SetBasePath(Directory.GetCurrentDirectory());
-            DatabaseUsersBuilder.AddJsonFile("appsettings.json");
-            IConfiguration DatabaseUsersConfiguration = DatabaseUsersBuilder.Build();
-            DataSource.ConnectionString = DatabaseUsersConfiguration.GetConnectionString("Connection");
+            DataSource.ConnectionString = @"Persist Security Info=False;User=ptrninkov1;Password=rageking1A;server=dev1.baist.ca";
+
+            //SqlConnection DataSource = new();
+            //ConfigurationBuilder DatabaseUsersBuilder = new();
+            //DatabaseUsersBuilder.SetBasePath(Directory.GetCurrentDirectory());
+            //DatabaseUsersBuilder.AddJsonFile("appsettings.json");
+            //IConfiguration DatabaseUsersConfiguration = DatabaseUsersBuilder.Build();
+            //DataSource.ConnectionString = DatabaseUsersConfiguration.GetConnectionString("Connection");
             DataSource.Open();
 
             SqlCommand GetTeeTimes = new()
@@ -187,12 +188,13 @@ namespace BAIS3130.Technical_Services
                 while (DataReader.Read())
                 {
                     TeeTime ListTeeTime = new();
+                    ListTeeTime.TeeTimeNumber = (int)DataReader["TeeTimeNumber"];
                     ListTeeTime.DesiredTime = TimeSpan.Parse(DataReader["Time"].ToString());
                     ListTeeTime.DesiredDate = DateTime.Parse(DataReader["Date"].ToString());
                     ListTeeTime.FullName = DataReader["FullName"].ToString();
-                    ListTeeTime.MemberOne = DataReader["MemberOne"].ToString();
-                    ListTeeTime.MemberTwo = DataReader["MemberTwo"].ToString();
-                    ListTeeTime.MemberThree = DataReader["MemberThree"].ToString();
+                    ListTeeTime.MemberOneID =(int) DataReader["MemberOne"];
+                    ListTeeTime.MemberTwoID = (int)DataReader["MemberTwo"];
+                    ListTeeTime.MemberThreeID = (int)DataReader["MemberThree"];
                     ListTeeTime.NumberOfCarts = (int)DataReader["NumberOfCarts"];
                     ListTeeTime.RequestedTime = TimeSpan.Parse(DataReader["RequestedTime"].ToString());
                     ListTeeTime.RequestedDate = DateTime.Parse(DataReader["RequestedDate"].ToString());
@@ -208,15 +210,15 @@ namespace BAIS3130.Technical_Services
         public bool DeleteTeeTimeForMember(int memberNumber, DateTime date, TimeSpan time)
         {
             bool Confirmation = false;
-            //SqlConnection DataSource = new();
-            //DataSource.ConnectionString = @"Persist Security Info=False;User=ptrninkov1;Password=rageking1A;server=dev1.baist.ca";
-
             SqlConnection DataSource = new();
-            ConfigurationBuilder DatabaseUsersBuilder = new();
-            DatabaseUsersBuilder.SetBasePath(Directory.GetCurrentDirectory());
-            DatabaseUsersBuilder.AddJsonFile("appsettings.json");
-            IConfiguration DatabaseUsersConfiguration = DatabaseUsersBuilder.Build();
-            DataSource.ConnectionString = DatabaseUsersConfiguration.GetConnectionString("Connection");
+            DataSource.ConnectionString = @"Persist Security Info=False;User=ptrninkov1;Password=rageking1A;server=dev1.baist.ca";
+
+            //SqlConnection DataSource = new();
+            //ConfigurationBuilder DatabaseUsersBuilder = new();
+            //DatabaseUsersBuilder.SetBasePath(Directory.GetCurrentDirectory());
+            //DatabaseUsersBuilder.AddJsonFile("appsettings.json");
+            //IConfiguration DatabaseUsersConfiguration = DatabaseUsersBuilder.Build();
+            //DataSource.ConnectionString = DatabaseUsersConfiguration.GetConnectionString("Connection");
             DataSource.Open();
 
             SqlCommand DeleteTeeTime = new()
@@ -266,15 +268,15 @@ namespace BAIS3130.Technical_Services
         {
             bool Confirmation = false;
 
-            //SqlConnection DataSource = new();
-            //DataSource.ConnectionString = @"Persist Security Info=False;User=ptrninkov1;Password=rageking1A;server=dev1.baist.ca";
-
             SqlConnection DataSource = new();
-            ConfigurationBuilder DatabaseUsersBuilder = new();
-            DatabaseUsersBuilder.SetBasePath(Directory.GetCurrentDirectory());
-            DatabaseUsersBuilder.AddJsonFile("appsettings.json");
-            IConfiguration DatabaseUsersConfiguration = DatabaseUsersBuilder.Build();
-            DataSource.ConnectionString = DatabaseUsersConfiguration.GetConnectionString("Connection");
+            DataSource.ConnectionString = @"Persist Security Info=False;User=ptrninkov1;Password=rageking1A;server=dev1.baist.ca";
+
+            //SqlConnection DataSource = new();
+            //ConfigurationBuilder DatabaseUsersBuilder = new();
+            //DatabaseUsersBuilder.SetBasePath(Directory.GetCurrentDirectory());
+            //DatabaseUsersBuilder.AddJsonFile("appsettings.json");
+            //IConfiguration DatabaseUsersConfiguration = DatabaseUsersBuilder.Build();
+            //DataSource.ConnectionString = DatabaseUsersConfiguration.GetConnectionString("Connection");
             DataSource.Open();
 
             SqlCommand UpdateTeeTime = new()
@@ -317,7 +319,7 @@ namespace BAIS3130.Technical_Services
                 ParameterName = "MemberOne",
                 SqlDbType = SqlDbType.Int,
                 Direction = ParameterDirection.Input,
-                Value = teeTime.MemberOne
+                Value = teeTime.MemberOneID
             };
             UpdateTeeTime.Parameters.Add(Parameter);
 
@@ -326,7 +328,7 @@ namespace BAIS3130.Technical_Services
                 ParameterName = "MemberTwo",
                 SqlDbType = SqlDbType.Int,
                 Direction = ParameterDirection.Input,
-                Value = teeTime.MemberTwo
+                Value = teeTime.MemberTwoID
             };
             UpdateTeeTime.Parameters.Add(Parameter);
 
@@ -335,7 +337,7 @@ namespace BAIS3130.Technical_Services
                 ParameterName = "MemberThree",
                 SqlDbType = SqlDbType.Int,
                 Direction = ParameterDirection.Input,
-                Value = teeTime.MemberThree
+                Value = teeTime.MemberThreeID
             };
             UpdateTeeTime.Parameters.Add(Parameter);
 
@@ -368,10 +370,10 @@ namespace BAIS3130.Technical_Services
 
             Parameter = new()
             {
-                ParameterName = "EmployeeName",
+                ParameterName = "DayOfWeek",
                 SqlDbType = SqlDbType.VarChar,
                 Direction = ParameterDirection.Input,
-                Value = teeTime.EmployeeName
+                Value = teeTime.RequestedDate.DayOfWeek
             };
             UpdateTeeTime.Parameters.Add(Parameter);
 
@@ -385,15 +387,15 @@ namespace BAIS3130.Technical_Services
         {
             TeeTime ScheduledTeeTime = new();
 
-            //SqlConnection DataSource = new();
-            //DataSource.ConnectionString = @"Persist Security Info=False;User=ptrninkov1;Password=rageking1A;server=dev1.baist.ca";
-
             SqlConnection DataSource = new();
-            ConfigurationBuilder DatabaseUsersBuilder = new();
-            DatabaseUsersBuilder.SetBasePath(Directory.GetCurrentDirectory());
-            DatabaseUsersBuilder.AddJsonFile("appsettings.json");
-            IConfiguration DatabaseUsersConfiguration = DatabaseUsersBuilder.Build();
-            DataSource.ConnectionString = DatabaseUsersConfiguration.GetConnectionString("Connection");
+            DataSource.ConnectionString = @"Persist Security Info=False;User=ptrninkov1;Password=rageking1A;server=dev1.baist.ca";
+
+            //SqlConnection DataSource = new();
+            //ConfigurationBuilder DatabaseUsersBuilder = new();
+            //DatabaseUsersBuilder.SetBasePath(Directory.GetCurrentDirectory());
+            //DatabaseUsersBuilder.AddJsonFile("appsettings.json");
+            //IConfiguration DatabaseUsersConfiguration = DatabaseUsersBuilder.Build();
+            //DataSource.ConnectionString = DatabaseUsersConfiguration.GetConnectionString("Connection");
             DataSource.Open();
 
             SqlCommand GetTeeTime = new()

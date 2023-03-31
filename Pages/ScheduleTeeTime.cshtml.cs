@@ -35,29 +35,19 @@ namespace BAIS3130.Pages
             if (HttpContext.Session.GetInt32("LoggedIn") == null)
             {
                 Response.Redirect("Login");
-            }
-            else
-            {
-                CBGC RequestDirector = new();
-                TeeTimes = RequestDirector.GetTeeTimesForMember(int.Parse(HttpContext.Session.GetInt32("Number").ToString()));
-            }
+            } 
         }
         public void OnPost()
         {
             CBGC RequestDirector = new();
-            TeeTimes = RequestDirector.GetTeeTimesForMember(int.Parse(HttpContext.Session.GetInt32("Number").ToString()));
             Member TempMember = new()
             {
                 Membership = HttpContext.Session.GetString("Membership")
             };
             TimeSpan upperLimit = new();
             TimeSpan lowerLimit = new();
-            if(Submit != "Schedule Tee Time") {
-                bool Confirmation = RequestDirector.CancelTeeTime(int.Parse(HttpContext.Session.GetInt32("Number").ToString()), TeeTimes[int.Parse(Submit)].DesiredTime, TeeTimes[TeeTimePos].DesiredDate);
-                Response.Redirect("ScheduleTeeTime");
-            }
-            else
-            {
+            
+            
 
                 if (DateTime.Compare(DesiredDate, DateTime.Now.AddDays(6)) < 0)
                 { // 7 days in advance
@@ -151,14 +141,13 @@ namespace BAIS3130.Pages
                     }
                 }
             }
-            
-        }
         private void SubmitPost() // submit post function/method
         {
             CBGC RequestDirector = new();
 
             TeeTime ScheduledTeeTime = new()
             {
+                MemberNumber = (int)HttpContext.Session.GetInt32("Number"),
                 DesiredTime = DesiredTime.TimeOfDay,
                 DesiredDate = DesiredDate,
                 MemberOneID = MemberOne,
@@ -170,7 +159,7 @@ namespace BAIS3130.Pages
                 EmployeeName = "Walter Orange"
             };
 
-            if (RequestDirector.BookTeeTime(ScheduledTeeTime, (int)HttpContext.Session.GetInt32("Number")))
+            if (RequestDirector.BookTeeTime(ScheduledTeeTime))
             {
                 Message = "Scheduled Successfully";
             }

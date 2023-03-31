@@ -40,7 +40,7 @@ namespace BAIS3130.Pages
             else
             {
                 CBGC RequestDirector = new();
-                StandingTeeTimes = RequestDirector.GetStandingTeeTimesForMember(int.Parse(HttpContext.Session.GetInt32("Number").ToString()));
+                StandingTeeTimes = RequestDirector.GetStandingTeeTimesForMember((int)HttpContext.Session.GetInt32("Number"));
             }
         }
         public void OnPost()
@@ -72,7 +72,7 @@ namespace BAIS3130.Pages
                         GroupMemberOne = MemberOne,
                         GroupMemberTwo = MemberTwo,
                         GroupMemberThree = MemberThree,
-                        RequestedTime = RequestedTime.TimeOfDay.ToString(),
+                        RequestedTeeTime = RequestedTime.TimeOfDay.ToString(),
                         StartDate = StartDate.Date.ToString(),
                         EndDate = EndDate.Date.ToString(),
                         PriorityNumber = 1,
