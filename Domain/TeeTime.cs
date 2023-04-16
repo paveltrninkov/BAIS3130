@@ -22,5 +22,6 @@ namespace BAIS3130.Domain
         public int MemberOneID { get; set; }
         public int MemberTwoID { get; set; }
         public int MemberThreeID { get; set; }
+        public bool CheckedIn { get; set; }
     }
 }

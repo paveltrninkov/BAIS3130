@@ -3,7 +3,7 @@
 @{
 }
 
-<h1>Register</h1>
+<h1>Record Membership Application</h1>
 <form  method="post">
     <table>
         <tr>
@@ -11,7 +11,8 @@
                 First Name:
             </td>
             <td>
-                <input type="text" name="FirstName" value="" />
+                <input type="text" asp-for="FirstName" value="" required/>
+                <span asp-validation-for="FirstName"></span>
             </td>
         </tr>
         <tr>
@@ -19,7 +20,8 @@
                 Last Name:
             </td>
             <td>
-                <input type="text" name="LastName" value="" />
+                <input type="text" asp-for="LastName" value="" required/>
+                <span asp-validation-for="LastName"></span>
             </td>
         </tr>
         <tr>
@@ -27,7 +29,8 @@
                 Phone:
             </td>
             <td>
-                <input type="text" name="Phone" value="" />
+                <input type="text" asp-for="Phone" value="" required/>
+                <span asp-validation-for="Phone"></span>
             </td>
         </tr>
         <tr>
@@ -35,7 +38,8 @@
                 Address:
             </td>
             <td>
-                <input type="text" name="Address" value="" />
+                <input type="text" asp-for="Address" value="" required/>
+                <span asp-validation-for="Address"></span>
             </td>
         </tr>
         <tr>
@@ -43,7 +47,8 @@
                 PostalCode:
             </td>
             <td>
-                <input type="text" name="PostalCode" value="" />
+                <input type="text" asp-for="PostalCode" value="" required/>
+                <span asp-validation-for="PostalCode"></span>
             </td>
         </tr>
         <tr>
@@ -51,7 +56,8 @@
                 Email:
             </td>
             <td>
-                <input type="email" name="Email" value="" />
+                <input type="email" asp-for="Email" value="" required/>
+                <span asp-validation-for="Email"></span>
             </td>
         </tr>
         <tr>
@@ -59,7 +65,8 @@
                 AlternatePhone:
             </td>
             <td>
-                <input type="text" name="AlternatePhone" value="" />
+                <input type="text" asp-for="AlternatePhone" value="" />
+                <span asp-validation-for="AlternatePhone"></span>
             </td>
         </tr>
         <tr>
@@ -67,7 +74,8 @@
                 DateOfBirth:
             </td>
             <td>
-                <input type="date" name="DOB" value="" />
+                <input type="date" asp-for="DOB" value="" required/>
+                <span asp-validation-for="DOB"></span>
             </td>
         </tr>
         <tr>
@@ -75,7 +83,8 @@
                 Signature:
             </td>
             <td>
-                <input type="text" name="Signature" value="" />
+                <input type="text" asp-for="Signature" value="" />
+                <span asp-validation-for="Signature"></span>
             </td>
         </tr>
         <tr>
@@ -83,7 +92,8 @@
                 Shareholder 1 Name:
             </td>
             <td>
-                <input type="text" name="Shareholder1Name" value="" />
+                <input type="text" asp-for="Shareholder1Name" value="" />
+                <span asp-validation-for="Shareholder1Name"></span>
             </td>
         </tr>
         <tr>
@@ -91,7 +101,8 @@
                 Shareholder 1 Signature:
             </td>
             <td>
-                <input type="text" name="Shareholder1Signature" value="" />
+                <input type="text" asp-for="Shareholder1Signature" value="" />
+                <span asp-validation-for="Shareholder1Signature"></span>
             </td>
         </tr>
         <tr>
@@ -99,7 +110,8 @@
                 Shareholder 2 Name:
             </td>
             <td>
-                <input type="text" name="Shareholder2Name" value="" />
+                <input type="text" asp-for="Shareholder2Name" value="" />
+                <span asp-validation-for="Shareholder2Name"></span>
             </td>
         </tr>
         <tr>
@@ -107,7 +119,8 @@
                 Shareholder 2 Signature:
             </td>
             <td>
-                <input type="text" name="Shareholder2Signature" value="" />
+                <input type="text" asp-for="Shareholder2Signature" value="" />
+                <span asp-validation-for="Shareholder2Signature"></span>
             </td>
         </tr>
         <tr>

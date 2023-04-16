@@ -107,5 +107,23 @@ namespace BAIS3130.Domain
             bool Confirmation = RequestDirector.UpdateTeeTime(updatedTeeTime);
             return Confirmation;
         }
+        public List<Scorecard> GetMemberScores(int memberNumber)
+        {
+            Members RequestDirector = new();
+            List<Scorecard> MemberScores = RequestDirector.GetMemberScores(memberNumber);
+            return MemberScores;
+        }
+        public Member ViewMember(int memberNumber)
+        {
+            Members RequestDirector = new();
+            Member MemberInfo = RequestDirector.ViewMember(memberNumber);
+            return MemberInfo;
+        }
+        public bool CheckInTeeTime(int teeTimeNumber)
+        {
+            TeeTimes RequestDirector = new();
+            bool Confirmation = RequestDirector.CheckInTeeTime(teeTimeNumber);
+            return Confirmation;
+        }
     }
 }

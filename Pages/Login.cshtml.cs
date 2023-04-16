@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Http;
 using BAIS3130.Domain;
+using System.ComponentModel.DataAnnotations;
 
 namespace BAIS3130.Pages
 {
@@ -14,8 +15,12 @@ namespace BAIS3130.Pages
         public List<Member> MemberLogins = new();
         public string Message { get; set; }
         [BindProperty]
+        [Required]
+        [StringLength(20, ErrorMessage = "Username cannot exceed 20 characters")]
         public string Username { get; set; }
         [BindProperty]
+        [Required]
+        [StringLength(20, ErrorMessage = "Password length cannot exceed 20 characters")]
         public string Password { get; set; }
         public void OnGet()
         {

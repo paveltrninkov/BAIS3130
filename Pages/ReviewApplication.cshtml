@@ -12,7 +12,8 @@
                 Application Number
             </td>
             <td>
-                <input type="number" name="ApplicationNumber" value="" />
+                <input type="number" asp-for="ApplicationNumber" value="@Model.ApplicationNumber" min="0" required/>
+                <span asp-validation-for="ApplicationNumber"></span>
             </td>
         </tr>
         <tr>
@@ -30,7 +31,8 @@
                 First Name
             </td>
             <td>
-                <input type="text" name="FirstName" value="@Model.FirstName" />
+                <input type="text" asp-for="FirstName" value="@Model.FirstName" />
+                <span asp-validation-for="FirstName"></span>
             </td>
         </tr>
         <tr>
@@ -38,7 +40,8 @@
                 Last Name
             </td>
             <td>
-                <input type="text" name="LastName" value="@Model.LastName" />
+                <input type="text" asp-for="LastName" value="@Model.LastName" />
+                <span asp-validation-for="LastName"></span>
             </td>
         </tr>
         <tr>
@@ -46,7 +49,8 @@
                 Phone
             </td>
             <td>
-                <input type="text" name="Phone" value="@Model.Phone" />
+                <input type="tel" asp-for="Phone" value="@Model.Phone" />
+                <span asp-validation-for="Phone"></span>
             </td>
         </tr>
         <tr>
@@ -54,7 +58,7 @@
                 Alternate Phone
             </td>
             <td>
-                <input type="text" name="AlternatePhone" value="@Model.AlternatePhone" />
+                <input type="tel" name="AlternatePhone" value="@Model.AlternatePhone" />
             </td>
         </tr>
         <tr>
@@ -62,7 +66,8 @@
                 Address
             </td>
             <td>
-                <input type="text" name="Address" value="@Model.Address" />
+                <input type="text" asp-for="Address" value="@Model.Address" />
+                <span asp-validation-for="Address"></span>
             </td>
         </tr>
         <tr>
@@ -70,7 +75,8 @@
                 Postal Code
             </td>
             <td>
-                <input type="text" name="PostalCode" value="@Model.PostalCode" />
+                <input type="text" asp-for="PostalCode" value="@Model.PostalCode" />
+                <span asp-validation-for="PostalCode"></span>
             </td>
         </tr>
         <tr>
@@ -78,7 +84,8 @@
                 Email
             </td>
             <td>
-                <input type="text" name="Email" value="@Model.Email" />
+                <input type="text" asp-for="Email" value="@Model.Email" />
+                <span asp-validation-for="Email"></span>
             </td>
         </tr>
         <tr>
@@ -86,7 +93,7 @@
                 Signed
             </td>
             <td>
-                <input type="radio" name="Signed" checked="@Model.Signed" />
+                <input type="checkbox" name="Signed" checked="@Model.Signed" />
             </td>
         </tr>
         <tr>
@@ -94,7 +101,8 @@
                 Date Of Birth
             </td>
             <td>
-                <input type="date" name="DOB" value="@Model.DOB" />
+                <input type="date" asp-for="DOB" value="@Model.DOB.ToString("yyyy-MM-dd")" />
+                <span asp-validation-for="DOB"></span>
             </td>
         </tr>
         <tr>
@@ -110,7 +118,7 @@
                 Shareholder 1 Signed
             </td>
             <td>
-                <input type="radio" name="Shareholder1Signed" checked="@Model.Shareholder1Signed" />
+                <input type="checkbox" name="Shareholder1Signed" checked="@Model.Shareholder1Signed" />
             </td>
         </tr>
         <tr>
@@ -118,7 +126,7 @@
                 Shareholder 1 Date Signed
             </td>
             <td>
-                <input type="date" name="Shareholder1Date" value="@Model.Shareholder1Date" />
+                <input type="date" name="Shareholder1Date" value="@Model.Shareholder1Date.ToString("yyyy-MM-dd")" />
             </td>
         </tr>
         <tr>
@@ -134,7 +142,7 @@
                 Shareholder 2 Signed
             </td>
             <td>
-                <input type="radio" name="Shareholder2Signed" checked="@Model.Shareholder2Signed" />
+                <input type="checkbox" name="Shareholder2Signed" checked="@Model.Shareholder2Signed" />
             </td>
         </tr>
         <tr>
@@ -142,7 +150,7 @@
                 Shareholder 2 Date Signed
             </td>
             <td>
-                <input type="date" name="Shareholder2Date" value="@Model.Shareholder2Date"/>
+                <input type="date" name="Shareholder2Date" value="@Model.Shareholder2Date.ToString("yyyy-MM-dd")"/>
             </td>
         </tr>
         <tr>
@@ -150,13 +158,14 @@
                 Membership Level:
             </td>
             <td>
-                <select name="Membership">
+                <select asp-for="Membership">
                     <option value="Gold" >Gold</option>
                     <option value="Silver">Silver</option>
                     <option value="Bronze">Bronze</option>
                     <option value="Copper">Copper</option>
                     <option value="Applicant" selected="selected">Applicant</option>
                 </select>
+                <span asp-validation-for="Membership"></span>
             </td>
         </tr>
         <tr>

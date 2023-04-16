@@ -1,0 +1,332 @@
+﻿@page
+@model BAIS3130.Pages.ViewMemberModel
+@{
+}
+
+@if(!Model.Member)
+            {
+                <form method="post">
+                    <table>
+                        <tr>
+                            <td>
+                                Member Number:
+                            </td>
+                            <td>
+                                <input type="number" asp-for="MemberNumber" value="" min="0" required/>
+                                <span asp-validation-for="MemberNumber"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="submit" name="Submit" value="Submit"/>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            }
+
+<table>
+    <tr>
+        <td>
+            Hole 1 Score
+        </td>
+        <td>
+            Hole 1 Par
+        </td>
+        <td>
+            Hole 2 Score
+        </td>
+        <td>
+            Hole 2 Par
+        </td>
+        <td>
+            Hole 3 Score
+        </td>
+        <td>
+            Hole 3 Par
+        </td>
+        <td>
+            Hole 4 Score
+        </td>
+        <td>
+            Hole 4 Par
+        </td>
+        <td>
+            Hole 5 Score
+        </td>
+        <td>
+            Hole 5 Par
+        </td>
+        <td>
+            Hole 6 Score
+        </td>
+        <td>
+            Hole 6 Par
+        </td>
+        <td>
+            Hole 7 Score
+        </td>
+        <td>
+            Hole 7 Par
+        </td>
+        <td>
+            Hole 8 Score
+        </td>
+        <td>
+            Hole 8 Par
+        </td>
+        <td>
+            Hole 9 Score
+        </td>
+        <td>
+            Hole 9 Par
+        </td>
+        <td>
+            Hole 10 Score
+        </td>
+        <td>
+            Hole 10 Par
+        </td>
+        <td>
+            Hole 11 Score
+        </td>
+        <td>
+            Hole 11 Par
+        </td>
+        <td>
+            Hole 12 Score
+        </td>
+        <td>
+            Hole 12 Par
+        </td>
+        <td>
+            Hole 13 Score
+        </td>
+        <td>
+            Hole 13 Par
+        </td>
+        <td>
+            Hole 14 Score
+        </td>
+        <td>
+            Hole 14 Par
+        </td>
+        <td>
+            Hole 15 Score
+        </td>
+        <td>
+            Hole 15 Par
+        </td>
+        <td>
+            Hole 16 Score
+        </td>
+        <td>
+            Hole 16 Par
+        </td>
+        <td>
+            Hole 17 Score
+        </td>
+        <td>
+            Hole 17 Par
+        </td>
+        <td>
+            Hole 18 Score
+        </td>
+        <td>
+            Hole 18 Par
+        </td>
+    </tr>
+    @if (Model.MemberScores.Count > 0)
+    {
+        @foreach (var Score in Model.MemberScores)
+        {
+            <tr>
+                <td>
+                    @Score.Hole1Score
+                </td>
+                <td>
+                    @Score.Hole1Par
+                </td>
+                <td>
+                    @Score.Hole2Score
+                </td>
+                <td>
+                    @Score.Hole2Par
+                </td>
+                <td>
+                    @Score.Hole3Score
+                </td>
+                <td>
+                    @Score.Hole3Par
+                </td>
+                <td>
+                    @Score.Hole4Score
+                </td>
+                <td>
+                    @Score.Hole4Par
+                </td>
+                <td>
+                    @Score.Hole5Score
+                </td>
+                <td>
+                    @Score.Hole5Par
+                </td>
+                <td>
+                    @Score.Hole6Score
+                </td>
+                <td>
+                    @Score.Hole6Par
+                </td>
+                <td>
+                    @Score.Hole7Score
+                </td>
+                <td>
+                    @Score.Hole7Par
+                </td>
+                <td>
+                    @Score.Hole8Score
+                </td>
+                <td>
+                    @Score.Hole8Par
+                </td>
+                <td>
+                    @Score.Hole9Score
+                </td>
+                <td>
+                    @Score.Hole9Par
+                </td>
+                <td>
+                    @Score.Hole10Score
+                </td>
+                <td>
+                    @Score.Hole10Par
+                </td>
+                <td>
+                    @Score.Hole11Score
+                </td>
+                <td>
+                    @Score.Hole11Par
+                </td>
+                <td>
+                    @Score.Hole12Score
+                </td>
+                <td>
+                    @Score.Hole12Par
+                </td>
+                <td>
+                    @Score.Hole13Score
+                </td>
+                <td>
+                    @Score.Hole13Par
+                </td>
+                <td>
+                    @Score.Hole14Score
+                </td>
+                <td>
+                    @Score.Hole14Par
+                </td>
+                <td>
+                    @Score.Hole15Score
+                </td>
+                <td>
+                    @Score.Hole15Par
+                </td>
+                <td>
+                    @Score.Hole16Score
+                </td>
+                <td>
+                    @Score.Hole16Par
+                </td>
+                <td>
+                    @Score.Hole17Score
+                </td>
+                <td>
+                    @Score.Hole17Par
+                </td>
+                <td>
+                    @Score.Hole18Score
+                </td>
+                <td>
+                    @Score.Hole18Par
+                </td>
+            </tr>
+        }
+    }
+</table>
+
+<div>
+    <h1>Member Information</h1>
+
+    <table>
+        <tr>
+            <td>
+                First Name:
+            </td>
+            <td>
+                @Model.MemberInfo.FirstName
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Last Name:
+            </td>
+            <td>
+                @Model.MemberInfo.LastName
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Full Address:
+            </td>
+            <td>
+                @Model.MemberInfo.Address @Model.MemberInfo.PostalCode
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Phone(s):
+            </td>
+            <td>
+                @Model.MemberInfo.Phone
+            </td>
+            @if (Model.MemberInfo.AlternatePhone != "N/A")
+            {
+            <td>
+                @Model.MemberInfo.AlternatePhone
+            </td>
+            }
+        </tr>
+        <tr>
+            <td>
+                Email:
+            </td>
+            <td>
+                @Model.MemberInfo.Email
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Date Of Birth:
+            </td>
+            <td>
+                @Model.MemberInfo.DOB.ToString("dd-MM-yyyy")
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Handicap Index:
+            </td>
+            <td>
+                @Model.MemberInfo.Handicap
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Membership:
+            </td>
+            <td>
+                @Model.MemberInfo.Membership
+            </td>
+        </tr>
+    </table>
+</div>

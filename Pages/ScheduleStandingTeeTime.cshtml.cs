@@ -22,10 +22,13 @@ namespace BAIS3130.Pages
         [BindProperty]
         public string MemberThree { get; set; }
         [BindProperty]
+        [Required]
         public DateTime StartDate { get; set; }
         [BindProperty]
+        [Required]
         public DateTime RequestedTime { get; set; }
         [BindProperty]
+        [Required]
         public DateTime EndDate { get; set; }
         [BindProperty]
         public string Submit { get; set; }
@@ -33,7 +36,8 @@ namespace BAIS3130.Pages
         public string Message { get; set; }
         public void OnGet()
         {
-            if (HttpContext.Session.GetInt32("LoggedIn") == null || HttpContext.Session.GetString("Membership") != "Gold")
+            List<string> NotAllowed = new() { "Finance", "Clerk", "ProShop" };
+            if (HttpContext.Session.GetInt32("LoggedIn") == null || HttpContext.Session.GetString("Membership") != "Gold" || NotAllowed.Contains(HttpContext.Session.GetString("Membership")))
             {
                 Response.Redirect("Login");
             }

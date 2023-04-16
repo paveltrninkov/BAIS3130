@@ -8,7 +8,8 @@
         <tr>
             <td>Member Number</td>
             <td>
-                <input type="number" name="MemberNumber" value="" />
+                <input type="number" asp-for="MemberNumber" value="" required/>
+                <span asp-validation-for="MemberNumber"></span>
             </td>
         </tr>
         <tr>

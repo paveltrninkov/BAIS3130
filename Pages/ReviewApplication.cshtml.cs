@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using BAIS3130.Domain;
 using Microsoft.AspNetCore.Http;
+using System.ComponentModel.DataAnnotations;
 
 namespace BAIS3130.Pages
 {
@@ -15,24 +16,32 @@ namespace BAIS3130.Pages
         [BindProperty]
         public string Submit { get; set; }
         [BindProperty]
+        [Required]
         public int ApplicationNumber { get; set; }
         [BindProperty]
         public string Membership { get; set; }
         [BindProperty]
+        [Required]
         public string FirstName { get; set; }
         [BindProperty]
+        [Required]
         public string LastName { get; set; }
         [BindProperty]
+        [Required]
         public string Phone { get; set; }
         [BindProperty]
         public string AlternatePhone { get; set; }
         [BindProperty]
+        [Required]
         public string Email { get; set; }
         [BindProperty]
+        [Required]
         public string Address { get; set; }
         [BindProperty]
+        [Required]
         public string PostalCode { get; set; }
         [BindProperty]
+        [Required]
         public DateTime DOB { get; set; }
         [BindProperty]
         public string Shareholder1Name { get; set; }
@@ -48,17 +57,16 @@ namespace BAIS3130.Pages
 
         [BindProperty]
         public DateTime Shareholder2Date { get; set; }
-
-
-
         [BindProperty]
         public bool Signed { get; set; }
+        private static int _applicationNumber { get; set; }
 
 
 
         public void OnGet()
         {
-            if (HttpContext.Session.GetInt32("LoggedIn") == null || HttpContext.Session.GetString("Membership") != "Finance")
+            List<string> NotAllowed = new() { "Finance", "Clerk", "ProShop", "Gold", "Silver", "Bronze", "Copper"};
+            if (HttpContext.Session.GetInt32("LoggedIn") == null || NotAllowed.Contains(HttpContext.Session.GetString("Membership")))
             {
                 Response.Redirect("Login");
             }
@@ -66,6 +74,7 @@ namespace BAIS3130.Pages
 
         public void OnPost()
         {
+            
             CBGC RequestDirector = new();
             switch (Submit)
             {
@@ -81,10 +90,12 @@ namespace BAIS3130.Pages
                     PostalCode = Application.PostalCode;
                     Shareholder1Date = Application.Shareholder1Date;
                     Shareholder1Name = Application.Shareholder1Name;
-                    Shareholder1Signed = Application.Shareholder1Signed;
+                    Shareholder1Signed = !Application.Shareholder1Signed;
                     Shareholder2Date = Application.Shareholder2Date;
                     Shareholder2Name = Application.Shareholder2Name;
-                    Shareholder2Signed = Application.Shareholder2Signed;
+                    Shareholder2Signed = !Application.Shareholder2Signed;
+                    Signed = !Application.Signed;
+                    _applicationNumber = ApplicationNumber;
                     break;
                 case "Accept":
                     Application = new()
@@ -107,7 +118,8 @@ namespace BAIS3130.Pages
                     RequestDirector.RegisterApplicant(Application, Membership);
                     break;
                 case "Reject":
-                    RequestDirector.RejectApplication(ApplicationNumber);
+                    ApplicationNumber = _applicationNumber;
+                    RequestDirector.RejectApplication(_applicationNumber);
                     break;
             }
         }

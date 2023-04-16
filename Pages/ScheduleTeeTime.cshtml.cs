@@ -17,8 +17,10 @@ namespace BAIS3130.Pages
         public int TeeTimePos { get; set; }
         public string Message { get; set; }
         [BindProperty]
+        [Required]
         public DateTime DesiredDate { get; set; }
         [BindProperty]
+        [Required]
         public DateTime DesiredTime { get; set; }
         [BindProperty]
         public int MemberOne { get; set; }
@@ -27,12 +29,14 @@ namespace BAIS3130.Pages
         [BindProperty]
         public int MemberThree { get; set; }
         [BindProperty]
+        [Required]
         public int Carts { get; set; }
         [BindProperty]
         public string Submit { get; set; }
         public void OnGet()
         {
-            if (HttpContext.Session.GetInt32("LoggedIn") == null)
+            List<string> NotAllowed = new() { "Finance", "Clerk", "ProShop" };
+            if (HttpContext.Session.GetInt32("LoggedIn") == null || NotAllowed.Contains(HttpContext.Session.GetString("Membership")))
             {
                 Response.Redirect("Login");
             } 

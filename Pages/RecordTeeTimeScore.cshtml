@@ -12,15 +12,8 @@
                 Tee Time Number
             </td>
             <td>
-                <input type="number" name="TeeTimeNumber" value="" />
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Handicap Index
-            </td>
-            <td>
-                <input type="number" name="HandicapIndex" value="" />
+                <input type="number" asp-for="TeeTimeNumber" value="" required/>
+                <span asp-validation-for="TeeTimeNumber"></span>
             </td>
         </tr>
         <tr>
@@ -28,7 +21,8 @@
                 Slope Rating
             </td>
             <td>
-                <input type="number" name="SlopeRating" value="" />
+                <input type="number" asp-for="SlopeRating" value="" required/>
+                <span asp-validation-for="SlopeRating"></span>
             </td>
         </tr>
         <tr>
@@ -36,303 +30,296 @@
                 Course Rating
             </td>
             <td>
-                <input type="number" name="CourseRating" value="" />
+                <input type="number" asp-for="CourseRating" value="" required/>
+                <span asp-validation-for="CourseRating"></span>
             </td>
         </tr>
         <tr>
             <td>
-                Member Number
+                Hole 1 Par
             </td>
             <td>
-                <input type="number" name="MemberNumber" value="" />
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Slope 1 Par
-            </td>
-            <td>
-                <input type="number" name="Slope1Par" value="" />
+                <input type="number" name="Hole1Par" value="" min="0"/>
             </td>
         </tr>
         <tr>
             <td>
-                Slope 1 Score
+                Hole 1 Score
             </td>
             <td>
-                <input type="number" name="Slope1Score" value="" />
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Slope 2 Par
-            </td>
-            <td>
-                <input type="number" name="Slope2Par" value="" />
+                <input type="number" name="Hole1Score" value="" min="0"/>
             </td>
         </tr>
         <tr>
             <td>
-                Slope 2 Score
+                Hole 2 Par
             </td>
             <td>
-                <input type="number" name="Slope2Score" value="" />
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Slope 3 Par
-            </td>
-            <td>
-                <input type="number" name="Slope3Par" value="" />
+                <input type="number" name="Hole2Par" value="" min="0"/>
             </td>
         </tr>
         <tr>
             <td>
-                Slope 3 Score
+                Hole 2 Score
             </td>
             <td>
-                <input type="number" name="Slope3Score" value="" />
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Slope 4 Par
-            </td>
-            <td>
-                <input type="number" name="Slope4Par" value="" />
+                <input type="number" name="Hole2Score" value="" min="0"/>
             </td>
         </tr>
         <tr>
             <td>
-                Slope 4 Score
+                Hole 3 Par
             </td>
             <td>
-                <input type="number" name="Slope4Score" value="" />
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Slope 5 Par
-            </td>
-            <td>
-                <input type="number" name="Slope5Par" value="" />
+                <input type="number" name="Hole3Par" value="" min="0"/>
             </td>
         </tr>
         <tr>
             <td>
-                Slope 5 Score
+                Hole 3 Score
             </td>
             <td>
-                <input type="number" name="Slope5Score" value="" />
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Slope 6 Par
-            </td>
-            <td>
-                <input type="number" name="Slope6Par" value="" />
+                <input type="number" name="Hole3Score" value="" min="0"/>
             </td>
         </tr>
         <tr>
             <td>
-                Slope 6 Score
+                Hole 4 Par
             </td>
             <td>
-                <input type="number" name="Slope6Score" value="" />
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Slope 7 Par
-            </td>
-            <td>
-                <input type="number" name="Slope7Par" value="" />
+                <input type="number" name="Hole4Par" value="" min="0"/>
             </td>
         </tr>
         <tr>
             <td>
-                Slope 7 Score
+                Hole 4 Score
             </td>
             <td>
-                <input type="number" name="Slope7Score" value="" />
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Slope 8 Par
-            </td>
-            <td>
-                <input type="number" name="Slope8Par" value="" />
+                <input type="number" name="Hole4Score" value="" min="0"/>
             </td>
         </tr>
         <tr>
             <td>
-                Slope 8 Score
+                Hole 5 Par
             </td>
             <td>
-                <input type="number" name="Slope8Score" value="" />
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Slope 9 Par
-            </td>
-            <td>
-                <input type="number" name="Slope9Par" value="" />
+                <input type="number" name="Hole5Par" value="" min="0"/>
             </td>
         </tr>
         <tr>
             <td>
-                Slope 9 Score
+                Hole 5 Score
             </td>
             <td>
-                <input type="number" name="Slope9Score" value="" />
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Slope 10 Par
-            </td>
-            <td>
-                <input type="number" name="Slope10Par" value="" />
+                <input type="number" name="Hole5Score" value="" min="0"/>
             </td>
         </tr>
         <tr>
             <td>
-                Slope 10 Score
+                Hole 6 Par
             </td>
             <td>
-                <input type="number" name="Slope10Score" value="" />
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Slope 11 Par
-            </td>
-            <td>
-                <input type="number" name="Slope11Par" value="" />
+                <input type="number" name="Hole6Par" value="" min="0"/>
             </td>
         </tr>
         <tr>
             <td>
-                Slope 11 Score
+                Hole 6 Score
             </td>
             <td>
-                <input type="number" name="Slope11Score" value="" />
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Slope 12 Par
-            </td>
-            <td>
-                <input type="number" name="Slope12Par" value="" />
+                <input type="number" name="Hole6Score" value="" min="0"/>
             </td>
         </tr>
         <tr>
             <td>
-                Slope 12 Score
+                Hole 7 Par
             </td>
             <td>
-                <input type="number" name="Slope12Score" value="" />
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Slope 13 Par
-            </td>
-            <td>
-                <input type="number" name="Slope13Par" value="" />
+                <input type="number" name="Hole7Par" value="" min="0"/>
             </td>
         </tr>
         <tr>
             <td>
-                Slope 13 Score
+                Hole 7 Score
             </td>
             <td>
-                <input type="number" name="Slope13Score" value="" />
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Slope 14 Par
-            </td>
-            <td>
-                <input type="number" name="Slope14Par" value="" />
+                <input type="number" name="Hole7Score" value="" min="0"/>
             </td>
         </tr>
         <tr>
             <td>
-                Slope 14 Score
+                Hole 8 Par
             </td>
             <td>
-                <input type="number" name="Slope14Score" value="" />
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Slope 15 Par
-            </td>
-            <td>
-                <input type="number" name="Slope15Par" value="" />
+                <input type="number" name="Hole8Par" value="" min="0"/>
             </td>
         </tr>
         <tr>
             <td>
-                Slope 15 Score
+                Hole 8 Score
             </td>
             <td>
-                <input type="number" name="Slope15Score" value="" />
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Slope 16 Par
-            </td>
-            <td>
-                <input type="number" name="Slope16Par" value="" />
+                <input type="number" name="Hole8Score" value="" min="0"/>
             </td>
         </tr>
         <tr>
             <td>
-                Slope 16 Score
+                Hole 9 Par
             </td>
             <td>
-                <input type="number" name="Slope16Score" value="" />
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Slope 17 Par
-            </td>
-            <td>
-                <input type="number" name="Slope17Par" value="" />
+                <input type="number" name="Hole9Par" value="" min="0"/>
             </td>
         </tr>
         <tr>
             <td>
-                Slope 17 Score
+                Hole 9 Score
             </td>
             <td>
-                <input type="number" name="Slope17Score" value="" />
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Slope 18 Par
-            </td>
-            <td>
-                <input type="number" name="Slope18Par" value="" />
+                <input type="number" name="Hole9Score" value="" min="0"/>
             </td>
         </tr>
         <tr>
             <td>
-                Slope 18 Score
+                Hole 10 Par
             </td>
             <td>
-                <input type="number" name="Slope18Score" value="" />
+                <input type="number" name="Hole10Par" value="" min="0"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Hole 10 Score
+            </td>
+            <td>
+                <input type="number" name="Hole10Score" value="" min="0"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Hole 11 Par
+            </td>
+            <td>
+                <input type="number" name="Hole11Par" value="" min="0"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Hole 11 Score
+            </td>
+            <td>
+                <input type="number" name="Hole11Score" value="" min="0"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Hole 12 Par
+            </td>
+            <td>
+                <input type="number" name="Hole12Par" value="" min="0"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Hole 12 Score
+            </td>
+            <td>
+                <input type="number" name="Hole12Score" value="" min="0"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Hole 13 Par
+            </td>
+            <td>
+                <input type="number" name="Hole13Par" value="" min="0"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Hole 13 Score
+            </td>
+            <td>
+                <input type="number" name="Hole13Score" value="" min="0"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Hole 14 Par
+            </td>
+            <td>
+                <input type="number" name="Hole14Par" value="" min="0"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Hole 14 Score
+            </td>
+            <td>
+                <input type="number" name="Hole14Score" value="" min="0"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Hole 15 Par
+            </td>
+            <td>
+                <input type="number" name="Hole15Par" value="" min="0"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Hole 15 Score
+            </td>
+            <td>
+                <input type="number" name="Hole15Score" value="" min="0"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Hole 16 Par
+            </td>
+            <td>
+                <input type="number" name="Hole16Par" value="" min="0"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Hole 16 Score
+            </td>
+            <td>
+                <input type="number" name="Hole16Score" value="" min="0"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Hole 17 Par
+            </td>
+            <td>
+                <input type="number" name="Hole17Par" value="" min="0"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Hole 17 Score
+            </td>
+            <td>
+                <input type="number" name="Hole17Score" value="" min="0"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Hole 18 Par
+            </td>
+            <td>
+                <input type="number" name="Hole18Par" value="" min="0"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Hole 18 Score
+            </td>
+            <td>
+                <input type="number" name="Hole18Score" value="" min="0"/>
             </td>
         </tr>
         <tr>

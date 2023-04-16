@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using BAIS3130.Domain;
@@ -12,15 +13,17 @@ namespace BAIS3130.Pages
     public class RecordTeeTimeScoreModel : PageModel
     {
         [BindProperty]
+        [Required]
+        [Range(0, 99999, ErrorMessage = "Tee Time Number cannot be negative.")]
         public int TeeTimeNumber { get; set; }
         [BindProperty]
-        public double HandicapIndex { get; set; }
-        [BindProperty]
+        [Required]
+        [Range(0, 99, ErrorMessage = "Slope Rating cannot be negative")]
         public int SlopeRating { get; set; }
         [BindProperty]
+        [Required]
+        [Range(0, 99, ErrorMessage = "Course Rating cannot be negative")]
         public int CourseRating { get; set; }
-        [BindProperty]
-        public int MemberNumber { get; set; }
         [BindProperty]
         public int Hole1Par { get; set; }
         [BindProperty]
@@ -95,7 +98,8 @@ namespace BAIS3130.Pages
         public int Hole18Score { get; set; }
         public void OnGet()
         {
-            if (HttpContext.Session.GetInt32("LoggedIn") == null)
+            List<string> NotAllowed = new() { "Finance", "Clerk", "ProShop", "MembershipCommittee", "Gold", "Silver", "Bronze", "Copper"};
+            if (HttpContext.Session.GetInt32("LoggedIn") == null || NotAllowed.Contains(HttpContext.Session.GetString("Membership")))
             {
                 Response.Redirect("Login");
             }
@@ -105,7 +109,10 @@ namespace BAIS3130.Pages
             CBGC RequestDirector = new();
 
             int CoursePar = Hole1Par + Hole2Par + Hole3Par + Hole4Par + Hole5Par + Hole6Par + Hole7Par + Hole8Par + Hole9Par + Hole10Par + Hole11Par + Hole12Par + Hole13Par + Hole14Par + Hole15Par + Hole16Par + Hole17Par + Hole18Par;
+            double HandicapIndex = RequestDirector.ViewHandicap((int)HttpContext.Session.GetInt32("Number"));
             double CourseHandicap = (HandicapIndex * (SlopeRating / 113) + (CourseRating - CoursePar));
+
+            
 
             Scorecard RecordedScorecard = new()
             {
@@ -114,7 +121,7 @@ namespace BAIS3130.Pages
                 SlopeRating = SlopeRating,
                 CourseRating = CourseRating,
                 CourseHandicap = CourseHandicap,
-                MemberNumber = MemberNumber,
+                MemberNumber = (int)HttpContext.Session.GetInt32("Number"),
                 Hole1Par = Hole1Par,
                 Hole1Score = Hole1Score,
                 Hole2Par = Hole2Par,

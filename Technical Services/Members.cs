@@ -15,15 +15,15 @@ namespace BAIS3130.Technical_Services
         public double ViewPlayerHandicap (int memberNumber)
         {
             double ReturnHandicap;
-            SqlConnection DataSource = new();
-            DataSource.ConnectionString = @"Persist Security Info=False;User=ptrninkov1;Password=rageking1A;server=dev1.baist.ca";
-
             //SqlConnection DataSource = new();
-            //ConfigurationBuilder DatabaseUsersBuilder = new();
-            //DatabaseUsersBuilder.SetBasePath(Directory.GetCurrentDirectory());
-            //DatabaseUsersBuilder.AddJsonFile("appsettings.json");
-            //IConfiguration DatabaseUsersConfiguration = DatabaseUsersBuilder.Build();
-            //DataSource.ConnectionString = DatabaseUsersConfiguration.GetConnectionString("Connection");
+            //DataSource.ConnectionString = @"Persist Security Info=False;User=ptrninkov1;Password=rageking1A;server=dev1.baist.ca";
+
+            SqlConnection DataSource = new();
+            ConfigurationBuilder DatabaseUsersBuilder = new();
+            DatabaseUsersBuilder.SetBasePath(Directory.GetCurrentDirectory());
+            DatabaseUsersBuilder.AddJsonFile("appsettings.json");
+            IConfiguration DatabaseUsersConfiguration = DatabaseUsersBuilder.Build();
+            DataSource.ConnectionString = DatabaseUsersConfiguration.GetConnectionString("Connection");
             DataSource.Open();
 
             SqlCommand ViewHandicap = new()
@@ -52,15 +52,15 @@ namespace BAIS3130.Technical_Services
         public bool ApplyMembership(MembershipApplication application)
         {
             bool Confirmation = false;
-            SqlConnection DataSource = new();
-            DataSource.ConnectionString = @"Persist Security Info=False;User=ptrninkov1;Password=rageking1A;server=dev1.baist.ca";
-
             //SqlConnection DataSource = new();
-            //ConfigurationBuilder DatabaseUsersBuilder = new();
-            //DatabaseUsersBuilder.SetBasePath(Directory.GetCurrentDirectory());
-            //DatabaseUsersBuilder.AddJsonFile("appsettings.json");
-            //IConfiguration DatabaseUsersConfiguration = DatabaseUsersBuilder.Build();
-            //DataSource.ConnectionString = DatabaseUsersConfiguration.GetConnectionString("Connection");
+            //DataSource.ConnectionString = @"Persist Security Info=False;User=ptrninkov1;Password=rageking1A;server=dev1.baist.ca";
+
+            SqlConnection DataSource = new();
+            ConfigurationBuilder DatabaseUsersBuilder = new();
+            DatabaseUsersBuilder.SetBasePath(Directory.GetCurrentDirectory());
+            DatabaseUsersBuilder.AddJsonFile("appsettings.json");
+            IConfiguration DatabaseUsersConfiguration = DatabaseUsersBuilder.Build();
+            DataSource.ConnectionString = DatabaseUsersConfiguration.GetConnectionString("Connection");
             DataSource.Open();
 
             SqlCommand ApplyMembership = new()
@@ -234,15 +234,15 @@ namespace BAIS3130.Technical_Services
         public MembershipApplication ViewApplication(int applicationNumber)
         {
             MembershipApplication MemberApplication = new();
-            SqlConnection DataSource = new();
-            DataSource.ConnectionString = @"Persist Security Info=False;User=ptrninkov1;Password=rageking1A;server=dev1.baist.ca";
-
             //SqlConnection DataSource = new();
-            //ConfigurationBuilder DatabaseUsersBuilder = new();
-            //DatabaseUsersBuilder.SetBasePath(Directory.GetCurrentDirectory());
-            //DatabaseUsersBuilder.AddJsonFile("appsettings.json");
-            //IConfiguration DatabaseUsersConfiguration = DatabaseUsersBuilder.Build();
-            //DataSource.ConnectionString = DatabaseUsersConfiguration.GetConnectionString("Connection");
+            //DataSource.ConnectionString = @"Persist Security Info=False;User=ptrninkov1;Password=rageking1A;server=dev1.baist.ca";
+
+            SqlConnection DataSource = new();
+            ConfigurationBuilder DatabaseUsersBuilder = new();
+            DatabaseUsersBuilder.SetBasePath(Directory.GetCurrentDirectory());
+            DatabaseUsersBuilder.AddJsonFile("appsettings.json");
+            IConfiguration DatabaseUsersConfiguration = DatabaseUsersBuilder.Build();
+            DataSource.ConnectionString = DatabaseUsersConfiguration.GetConnectionString("Connection");
             DataSource.Open();
 
             SqlCommand ViewApplication = new()
@@ -294,15 +294,15 @@ namespace BAIS3130.Technical_Services
         public bool RegisterApplicant(MembershipApplication application, string membership)
         {
             bool Confirmation = false;
-            SqlConnection DataSource = new();
-            DataSource.ConnectionString = @"Persist Security Info=False;User=ptrninkov1;Password=rageking1A;server=dev1.baist.ca";
-
             //SqlConnection DataSource = new();
-            //ConfigurationBuilder DatabaseUsersBuilder = new();
-            //DatabaseUsersBuilder.SetBasePath(Directory.GetCurrentDirectory());
-            //DatabaseUsersBuilder.AddJsonFile("appsettings.json");
-            //IConfiguration DatabaseUsersConfiguration = DatabaseUsersBuilder.Build();
-            //DataSource.ConnectionString = DatabaseUsersConfiguration.GetConnectionString("Connection");
+            //DataSource.ConnectionString = @"Persist Security Info=False;User=ptrninkov1;Password=rageking1A;server=dev1.baist.ca";
+
+            SqlConnection DataSource = new();
+            ConfigurationBuilder DatabaseUsersBuilder = new();
+            DatabaseUsersBuilder.SetBasePath(Directory.GetCurrentDirectory());
+            DatabaseUsersBuilder.AddJsonFile("appsettings.json");
+            IConfiguration DatabaseUsersConfiguration = DatabaseUsersBuilder.Build();
+            DataSource.ConnectionString = DatabaseUsersConfiguration.GetConnectionString("Connection");
             DataSource.Open();
 
             SqlCommand RegisterApplicant = new()
@@ -408,15 +408,15 @@ namespace BAIS3130.Technical_Services
         public bool DeleteApplication(int applicationNumber)
         {
             bool Confirmation = false;
-            SqlConnection DataSource = new();
-            DataSource.ConnectionString = @"Persist Security Info=False;User=ptrninkov1;Password=rageking1A;server=dev1.baist.ca";
-
             //SqlConnection DataSource = new();
-            //ConfigurationBuilder DatabaseUsersBuilder = new();
-            //DatabaseUsersBuilder.SetBasePath(Directory.GetCurrentDirectory());
-            //DatabaseUsersBuilder.AddJsonFile("appsettings.json");
-            //IConfiguration DatabaseUsersConfiguration = DatabaseUsersBuilder.Build();
-            //DataSource.ConnectionString = DatabaseUsersConfiguration.GetConnectionString("Connection");
+            //DataSource.ConnectionString = @"Persist Security Info=False;User=ptrninkov1;Password=rageking1A;server=dev1.baist.ca";
+
+            SqlConnection DataSource = new();
+            ConfigurationBuilder DatabaseUsersBuilder = new();
+            DatabaseUsersBuilder.SetBasePath(Directory.GetCurrentDirectory());
+            DatabaseUsersBuilder.AddJsonFile("appsettings.json");
+            IConfiguration DatabaseUsersConfiguration = DatabaseUsersBuilder.Build();
+            DataSource.ConnectionString = DatabaseUsersConfiguration.GetConnectionString("Connection");
             DataSource.Open();
 
             SqlCommand DeleteApplication = new()
@@ -445,15 +445,15 @@ namespace BAIS3130.Technical_Services
         {
             Member MemberInformation = new();
 
-            SqlConnection DataSource = new();
-            DataSource.ConnectionString = @"Persist Security Info=False;User=ptrninkov1;Password=rageking1A;server=dev1.baist.ca";
-
             //SqlConnection DataSource = new();
-            //ConfigurationBuilder DatabaseUsersBuilder = new();
-            //DatabaseUsersBuilder.SetBasePath(Directory.GetCurrentDirectory());
-            //DatabaseUsersBuilder.AddJsonFile("appsettings.json");
-            //IConfiguration DatabaseUsersConfiguration = DatabaseUsersBuilder.Build();
-            //DataSource.ConnectionString = DatabaseUsersConfiguration.GetConnectionString("Connection");
+            //DataSource.ConnectionString = @"Persist Security Info=False;User=ptrninkov1;Password=rageking1A;server=dev1.baist.ca";
+
+            SqlConnection DataSource = new();
+            ConfigurationBuilder DatabaseUsersBuilder = new();
+            DatabaseUsersBuilder.SetBasePath(Directory.GetCurrentDirectory());
+            DatabaseUsersBuilder.AddJsonFile("appsettings.json");
+            IConfiguration DatabaseUsersConfiguration = DatabaseUsersBuilder.Build();
+            DataSource.ConnectionString = DatabaseUsersConfiguration.GetConnectionString("Connection");
             DataSource.Open();
 
             SqlCommand GetMemberPassword = new()
@@ -494,15 +494,15 @@ namespace BAIS3130.Technical_Services
         {
             Member MemberInformation = new();
 
-            SqlConnection DataSource = new();
-            DataSource.ConnectionString = @"Persist Security Info=False;User=ptrninkov1;Password=rageking1A;server=dev1.baist.ca";
-
             //SqlConnection DataSource = new();
-            //ConfigurationBuilder DatabaseUsersBuilder = new();
-            //DatabaseUsersBuilder.SetBasePath(Directory.GetCurrentDirectory());
-            //DatabaseUsersBuilder.AddJsonFile("appsettings.json");
-            //IConfiguration DatabaseUsersConfiguration = DatabaseUsersBuilder.Build();
-            //DataSource.ConnectionString = DatabaseUsersConfiguration.GetConnectionString("Connection");
+            //DataSource.ConnectionString = @"Persist Security Info=False;User=ptrninkov1;Password=rageking1A;server=dev1.baist.ca";
+
+            SqlConnection DataSource = new();
+            ConfigurationBuilder DatabaseUsersBuilder = new();
+            DatabaseUsersBuilder.SetBasePath(Directory.GetCurrentDirectory());
+            DatabaseUsersBuilder.AddJsonFile("appsettings.json");
+            IConfiguration DatabaseUsersConfiguration = DatabaseUsersBuilder.Build();
+            DataSource.ConnectionString = DatabaseUsersConfiguration.GetConnectionString("Connection");
             DataSource.Open();
 
             SqlCommand ViewMember = new()
@@ -534,10 +534,10 @@ namespace BAIS3130.Technical_Services
                     Address = DataReader["Address"].ToString(),
                     PostalCode = DataReader["PostalCode"].ToString(),
                     Phone = DataReader["Phone"].ToString(),
-                    AlternatePhone = String.IsNullOrEmpty(DataReader["AlternatePhone"].ToString()) ? "" : DataReader["AlternatePhone"].ToString(),
+                    AlternatePhone = String.IsNullOrEmpty(DataReader["AlternatePhone"].ToString()) ? "N/A" : DataReader["AlternatePhone"].ToString(),
                     Email = DataReader["Email"].ToString(),
                     DOB = DateTime.Parse(DataReader["DateOfBirth"].ToString()),
-                    Handicap = (double)DataReader["HandicapIndex"],
+                    Handicap = double.Parse(DataReader["HandicapIndex"].ToString()),
                     Membership = DataReader["Membership"].ToString()
                 };
             }
@@ -550,15 +550,15 @@ namespace BAIS3130.Technical_Services
         {
             List<Member> MemberLogins = new();
 
-            SqlConnection DataSource = new();
-            DataSource.ConnectionString = @"Persist Security Info=False;User=ptrninkov1;Password=rageking1A;server=dev1.baist.ca";
-
             //SqlConnection DataSource = new();
-            //ConfigurationBuilder DatabaseUsersBuilder = new();
-            //DatabaseUsersBuilder.SetBasePath(Directory.GetCurrentDirectory());
-            //DatabaseUsersBuilder.AddJsonFile("appsettings.json");
-            //IConfiguration DatabaseUsersConfiguration = DatabaseUsersBuilder.Build();
-            //DataSource.ConnectionString = DatabaseUsersConfiguration.GetConnectionString("Connection");
+            //DataSource.ConnectionString = @"Persist Security Info=False;User=ptrninkov1;Password=rageking1A;server=dev1.baist.ca";
+
+            SqlConnection DataSource = new();
+            ConfigurationBuilder DatabaseUsersBuilder = new();
+            DatabaseUsersBuilder.SetBasePath(Directory.GetCurrentDirectory());
+            DatabaseUsersBuilder.AddJsonFile("appsettings.json");
+            IConfiguration DatabaseUsersConfiguration = DatabaseUsersBuilder.Build();
+            DataSource.ConnectionString = DatabaseUsersConfiguration.GetConnectionString("Connection");
             DataSource.Open();
 
             SqlCommand GetAllMembersLoginInformation = new()
@@ -589,6 +589,92 @@ namespace BAIS3130.Technical_Services
             DataReader.Close();
             DataSource.Close();
             return MemberLogins;
+        }
+
+        public List<Scorecard> GetMemberScores (int memberNumber)
+        {
+            List<Scorecard> MemberScores = new();
+
+            //SqlConnection DataSource = new();
+            //DataSource.ConnectionString = @"Persist Security Info=False;User=ptrninkov1;Password=rageking1A;server=dev1.baist.ca";
+
+            SqlConnection DataSource = new();
+            ConfigurationBuilder DatabaseUsersBuilder = new();
+            DatabaseUsersBuilder.SetBasePath(Directory.GetCurrentDirectory());
+            DatabaseUsersBuilder.AddJsonFile("appsettings.json");
+            IConfiguration DatabaseUsersConfiguration = DatabaseUsersBuilder.Build();
+            DataSource.ConnectionString = DatabaseUsersConfiguration.GetConnectionString("Connection");
+            DataSource.Open();
+
+            SqlCommand GetMemberScores = new()
+            {
+                Connection = DataSource,
+                CommandText = "GetMemberScores",
+                CommandType = CommandType.StoredProcedure
+            };
+
+            SqlParameter Parameter = new()
+            {
+                ParameterName = "MemberNumber",
+                SqlDbType = SqlDbType.Int,
+                Direction = ParameterDirection.Input,
+                Value = memberNumber
+            };
+            GetMemberScores.Parameters.Add(Parameter);
+
+            SqlDataReader DataReader = GetMemberScores.ExecuteReader();
+
+            if (DataReader.HasRows)
+            {
+                while (DataReader.Read())
+                {
+                    Scorecard MemberScore = new()
+                    {
+                        MemberNumber = memberNumber,
+                        Hole1Score = (int)DataReader["Hole1Score"],
+                        Hole2Score = (int)DataReader["Hole2Score"],
+                        Hole3Score = (int)DataReader["Hole3Score"],
+                        Hole4Score = (int)DataReader["Hole4Score"],
+                        Hole5Score = (int)DataReader["Hole5Score"],
+                        Hole6Score = (int)DataReader["Hole6Score"],
+                        Hole7Score = (int)DataReader["Hole7Score"],
+                        Hole8Score = (int)DataReader["Hole8Score"],
+                        Hole9Score = (int)DataReader["Hole9Score"],
+                        Hole10Score = (int)DataReader["Hole10Score"],
+                        Hole11Score = (int)DataReader["Hole11Score"],
+                        Hole12Score = (int)DataReader["Hole12Score"],
+                        Hole13Score = (int)DataReader["Hole13Score"],
+                        Hole14Score = (int)DataReader["Hole14Score"],
+                        Hole15Score = (int)DataReader["Hole15Score"],
+                        Hole16Score = (int)DataReader["Hole16Score"],
+                        Hole17Score = (int)DataReader["Hole17Score"],
+                        Hole18Score = (int)DataReader["Hole18Score"],
+                        Hole1Par = (int)DataReader["Hole1Par"],
+                        Hole2Par = (int)DataReader["Hole2Par"],
+                        Hole3Par = (int)DataReader["Hole3Par"],
+                        Hole4Par = (int)DataReader["Hole4Par"],
+                        Hole5Par = (int)DataReader["Hole5Par"],
+                        Hole6Par = (int)DataReader["Hole6Par"],
+                        Hole7Par = (int)DataReader["Hole7Par"],
+                        Hole8Par = (int)DataReader["Hole8Par"],
+                        Hole9Par = (int)DataReader["Hole9Par"],
+                        Hole10Par = (int)DataReader["Hole10Par"],
+                        Hole11Par = (int)DataReader["Hole11Par"],
+                        Hole12Par = (int)DataReader["Hole12Par"],
+                        Hole13Par = (int)DataReader["Hole13Par"],
+                        Hole14Par = (int)DataReader["Hole14Par"],
+                        Hole15Par = (int)DataReader["Hole15Par"],
+                        Hole16Par = (int)DataReader["Hole16Par"],
+                        Hole17Par = (int)DataReader["Hole17Par"],
+                        Hole18Par = (int)DataReader["Hole18Par"],
+                    };
+                    MemberScores.Add(MemberScore);
+                }
+            }
+
+            DataReader.Close();
+            DataSource.Close();
+            return MemberScores;
         }
     }
 }

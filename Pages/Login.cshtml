@@ -10,7 +10,8 @@
                 Username:
             </td>
             <td>
-                <input type="text" name="Username" value="" />
+                <input type="text" asp-for="Username" value="" required />
+                <span asp-validation-for="Username"></span>
             </td>
         </tr>
         <tr>
@@ -18,7 +19,7 @@
                 Password:
             </td>
             <td>
-                <input type="password" name="Password" value="" />
+                <input type="password" asp-for="Password" value="" required />
             </td>
         </tr>
         <tr>
@@ -27,8 +28,9 @@
             </td>
         </tr>
     </table>
-    @Model.Message
 </form>
+
+@Model.Message
 
 <table>
     <tr>
@@ -48,24 +50,24 @@
             Membership Level
         </td>
     </tr>
-    @foreach(var Member in Model.MemberLogins)
-            {
-                <tr>
-                    <td>
-                        @Member.FirstName
-                    </td>
-                    <td>
-                        @Member.LastName
-                    </td>
-                    <td>
-                        @Member.Username
-                    </td>
-                    <td>
-                        @Member.Password
-                    </td>
-                    <td>
-                        @Member.Membership
-                    </td>
-                </tr>
-            }
+    @foreach (var Member in Model.MemberLogins)
+    {
+        <tr>
+            <td>
+                @Member.FirstName
+            </td>
+            <td>
+                @Member.LastName
+            </td>
+            <td>
+                @Member.Username
+            </td>
+            <td>
+                @Member.Password
+            </td>
+            <td>
+                @Member.Membership
+            </td>
+        </tr>
+    }
 </table>

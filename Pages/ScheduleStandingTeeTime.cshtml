@@ -39,41 +39,45 @@
             </th>
         </tr>
         @{int StandingTeeTimePos = 0; }
-        @foreach (var teeTime in Model.StandingTeeTimes)
+        @if (Model.StandingTeeTimes != null)
         {
-            <tr>
-                <td>
-                    @teeTime.ShareholderMemberName
-                </td>
-                <td>
-                    @teeTime.GroupMemberOne 
-                </td>
-                <td>
-                    @teeTime.GroupMemberTwo
-                </td>
-                <td>
-                    @teeTime.GroupMemberThree
-                </td>
-                <td>
-                    @teeTime.RequestedTeeTime
-                </td>
-                <td>
-                    @teeTime.StartDate
-                </td>
-                <td>
-                    @teeTime.EndDate
-                </td>
-                <td>
-                    @teeTime.PriorityNumber
-                </td>
-                <td>
-                    @teeTime.DayOfWeek
-                </td>
-                <td>
-                    <input type="submit" name="Submit" value="@StandingTeeTimePos"/>
-                </td>
-            </tr>
+            @foreach (var teeTime in Model.StandingTeeTimes)
+            {
+                <tr>
+                    <td>
+                        @teeTime.ShareholderMemberName
+                    </td>
+                    <td>
+                        @teeTime.GroupMemberOne
+                    </td>
+                    <td>
+                        @teeTime.GroupMemberTwo
+                    </td>
+                    <td>
+                        @teeTime.GroupMemberThree
+                    </td>
+                    <td>
+                        @teeTime.RequestedTeeTime
+                    </td>
+                    <td>
+                        @teeTime.StartDate
+                    </td>
+                    <td>
+                        @teeTime.EndDate
+                    </td>
+                    <td>
+                        @teeTime.PriorityNumber
+                    </td>
+                    <td>
+                        @teeTime.DayOfWeek
+                    </td>
+                    <td>
+                        <input type="submit" name="Submit" value="@StandingTeeTimePos" />
+                    </td>
+                </tr>
+            }
         }
+
     </table>
 </form>
 
@@ -108,7 +112,8 @@
                 Start Date:
             </td>
             <td>
-                <input type="date" name="StartDate" value="" />
+                <input type="date" value="" asp-for="StartDate"/>
+                <span asp-validation-for="StartDate"></span>
             </td>
         </tr>
         <tr>
@@ -116,7 +121,8 @@
                 Requested Tee Time:
             </td>
             <td>
-                <input type="time" name="RequestedTime" value="" />
+                <input type="time" asp-for="RequestedTime" value="" />
+                <span asp-validation-for="RequestedTime"></span>
             </td>
         </tr>
         <tr>
@@ -124,7 +130,8 @@
                 End Date
             </td>
             <td>
-                <input type="date" name="EndDate" value="" />
+                <input type="date" asp-for="EndDate" value="" />
+                <span asp-validation-for="EndDate"></span>
             </td>
         </tr>
         <tr>

@@ -46,13 +46,31 @@
                     @teeTime.FullName
                 </td>
                 <td>
-                    @teeTime.MemberOneID
+                    @if (teeTime.MemberOneID == -1)
+                    {
+                        Html.Raw("N/A");
+                    } else
+                    {
+                        Html.Raw(teeTime.MemberOneID);
+                    }   
                 </td>
                 <td>
-                    @teeTime.MemberTwoID
+                    @if (teeTime.MemberTwoID == -1)
+                    {
+                        Html.Raw("N/A");
+                    } else
+                    {
+                        Html.Raw(teeTime.MemberTwoID);
+                    }
                 </td>
                 <td>
-                    @teeTime.MemberThreeID
+                    @if (teeTime.MemberThreeID == -1)
+                {
+                        Html.Raw("N/A");
+                } else
+                {
+                        Html.Raw(teeTime.MemberThreeID);
+                }
                 </td>
                 <td>
                     @teeTime.RequestedTime
@@ -73,6 +91,7 @@
                     <button type="submit" value="@TeeTimePos" name="Submit">Select to Modify</button>
                 </td>
             </tr>
+            TeeTimePos++;
         }
     </table>
 </form>
@@ -85,7 +104,8 @@
                 Tee Time Date:
             </td>
             <td>
-                <input type="text" name="TeeTimeDate" value="@Model.TeeTimeDate" />
+                <input type="date" asp-for="TeeTimeDate" value="@Model.TeeTimeDate" required/>
+                <span asp-validation-for="TeeTimeDate"></span>
             </td>
         </tr>
         <tr>
@@ -93,7 +113,8 @@
                 Tee Time:
             </td>
             <td>
-                <input type="text" name="TeeTimeTime" value="@Model.TeeTimeTime" />
+                <input type="time" asp-for="TeeTimeTime" value="@Model.TeeTimeTime" required/>
+                <span asp-validation-for="TeeTimeTime"></span>
             </td>
         </tr>
         <tr>
@@ -101,7 +122,14 @@
                 Member One:
             </td>
             <td>
-                <input type="text" name="MemberOne" value="@Model.MemberOne" />
+                @if (Model.MemberOne == -1)
+            {
+                    <input type="text" asp-for="MemberOne" value="N/A"/>
+            } else
+            {
+                    <input type="text" asp-for="MemberOne" value="@Model.MemberOne"/>
+            }
+                <span asp-validation-for="MemberOne"></span>
             </td>
         </tr>
         <tr>
@@ -109,7 +137,15 @@
                 Member Two:
             </td>
             <td>
-                <input type="text" name="MemberTwo" value="@Model.MemberTwo" />
+                @if (Model.MemberTwo == -1)
+                {
+                    <input type="text" asp-for="MemberTwo" value="N/A" />
+                }
+                else
+                {
+                    <input type="text" asp-for="MemberTwo" value="@Model.MemberTwo" />
+                }
+                <span asp-validation-for="MemberTwo"></span>
             </td>
         </tr>
         <tr>
@@ -117,7 +153,15 @@
                 Member Three:
             </td>
             <td>
-                <input type="text" name="MemberThree" value="@Model.MemberThree" />
+                @if (Model.MemberThree == -1)
+                {
+                    <input type="text" asp-for="MemberThree" value="N/A" />
+                }
+                else
+                {
+                    <input type="text" asp-for="MemberThree" value="@Model.MemberThree" />
+                }
+                <span asp-validation-for="MemberThree"></span>
             </td>
         </tr>
         <tr>
@@ -125,7 +169,8 @@
                 Carts Requested:
             </td>
             <td>
-                <input type="number" name="NumberOfCarts" value="@Model.NumberOfCarts" />
+                <input type="number" asp-for="NumberOfCarts" value="@Model.NumberOfCarts" min="0" max="4"/>
+                <span asp-validation-for="NumberOfCarts"></span>
             </td>
         </tr>
         <tr>
@@ -134,6 +179,9 @@
             </td>
             <td>
                 <input type="submit" name="Submit" value="Modify" />
+            </td>
+            <td>
+                <input type="submit" name="Submit" value="Check In" />
             </td>
         </tr>
     </table>
